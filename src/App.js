@@ -3,8 +3,8 @@ import './App.css';
 import axios from 'axios';
 
 function App() {
-    const SCOPE = "user-read-recently-played";
-    const CLIENT_ID = ""
+    const SCOPE = "user-read-recently-played playlist-modify-public";
+    const CLIENT_ID = "a8bf7b856450451aa2b7508d88c03830"
     const REDIRECT_URI = "http://localhost:3000"
     const AUTH_ENDPOINT = "https://accounts.spotify.com/authorize"
     const RESPONSE_TYPE = "token"
@@ -101,6 +101,55 @@ function App() {
         }
     }
 
+    const createPlaylist = async () => {
+        try {
+            const { data } = await axios.post(
+                "https://api.spotify.com/v1/me/playlists",
+                {
+                    name: "My New Playlist", // Replace with your desired playlist name
+                    public: true, // Set to true if you want the playlist to be public
+                },
+                {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                        "Content-Type": "application/json",
+                    },
+                }
+            );
+    
+            console.log("New playlist created:", data);
+    
+            // Now add tracks to the newly created playlist
+            await addTracksToPlaylist(data.id);
+        } catch (error) {
+            console.error("Error creating playlist:", error);
+        }
+    }
+
+    const addTracksToPlaylist = async (playlistId) => {
+        try {
+            const uris = recommendations.map((track) => track.uri);
+            const { data } = await axios.post(
+                `https://api.spotify.com/v1/playlists/${playlistId}/tracks`,
+                {
+                    uris: uris,
+                },
+                {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                        "Content-Type": "application/json",
+                    },
+                }
+            );
+    
+            console.log("Tracks added to playlist:", data);
+        } catch (error) {
+            console.error("Error adding tracks to playlist:", error);
+        }
+    }
+    
+    
+
     return (
         <div className="App">
             {token ? (
@@ -135,6 +184,7 @@ function App() {
                             </li>
                         ))}
                     </ul>
+                    <button onClick={createPlaylist}>Create Playlist</button>
                 </div>
             )}
         </div>
