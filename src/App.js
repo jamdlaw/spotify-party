@@ -52,6 +52,9 @@ function App() {
                 headers: {
                     Authorization: `Bearer ${token}`
                 },
+                params: {
+                    limit: 5
+                }
             });
 
             setListenHistory(data.items);
