@@ -11,7 +11,8 @@ function App() {
 
     const [token, setToken] = useState("")
     const [listenHistory, setListenHistory] = useState([])
-    const [artistSeedIds, setArtistSeedIds] = useState([]);
+    const [artistSeedIds, setArtistSeedIds] = useState([])
+    const [recommendations, setRecommendations] = useState([])
     
     
     useEffect(() => {
@@ -90,10 +91,11 @@ function App() {
             ).then(responses => {
                 // Merge recommendations from all responses
                 recommendations = responses.flatMap(response => response.data.tracks);
+                setRecommendations(recommendations);
             });
 
             // Do something with the merged recommendations (e.g., set a new state variable)
-            console.log("Recommendations:", recommendations);
+            //console.log("Recommendations:", recommendations);
         } catch (error) {
             console.error("Error fetching recommendations:", error);
         }
@@ -118,6 +120,21 @@ function App() {
                         ))}
                     </ul>
                     <button onClick={getRecommendations}>Get Recommendations</button>
+                </div>
+            )}
+            {recommendations.length > 0 && (
+                <div>
+                    <h2>Recommendations:</h2>
+                    <ul>
+                        {recommendations.map((track, index) => (
+                            <li key={index}>
+                                <strong>Track ID:</strong> {track.id}{" "}
+                                <strong>Track:</strong> {track.name}{" "}
+                                <strong>Artists:</strong>{" "}
+                                {track.artists.map((artist) => artist.name).join(", ")}
+                            </li>
+                        ))}
+                    </ul>
                 </div>
             )}
         </div>
