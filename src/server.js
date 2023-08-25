@@ -6,7 +6,7 @@ const path = require('path');
 require('dotenv').config({ path: path.resolve(__dirname, './.env') });
 const sql = require('./mysql-utils');
 
-app.get('/', async (req, res) => {
+app.get('/testdb', async (req, res) => {
     let foo = await sql.query('SELECT * FROM Users');
     res.send(foo)
 })
