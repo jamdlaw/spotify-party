@@ -11,7 +11,8 @@ Hosts will be able to create playlist for all the quests at the party.
 │   ├── spotifyService.js
 │   └── playlistService.js
 ├── utils
-│   └── spotifyAPI.js
+│   ├── spotifyAPI.js
+│   ├── mysqlUtils.js
 ├── routes
 │   └── index.js
 ├── .env
