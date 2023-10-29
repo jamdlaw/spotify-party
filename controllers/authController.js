@@ -1,3 +1,4 @@
+// authController.js
 const express = require('express');
 const authService = require('../services/authService');
 

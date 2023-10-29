@@ -1,6 +1,6 @@
+// spotifyController.js
 const express = require('express');
 const spotifyService = require('../services/spotifyService');
-const playlistService = require('../services/playlistService');
 
 const router = express.Router();
 
