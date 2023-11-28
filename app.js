@@ -13,12 +13,13 @@ var crypto = require('crypto');
 var cors = require('cors');
 var querystring = require('querystring');
 var cookieParser = require('cookie-parser');
-
 const getRecentlyPlayed = require('./getRecentlyPlayed');
+const dotenv = require('dotenv');
+dotenv.config();
 
 
-var client_id = ''; // your clientId
-var client_secret = ''; // Your secret
+var client_id = process.env.client_id; // your clientId
+var client_secret = process.env.client_secret; // Your secret
 var redirect_uri = 'http://localhost:8888/callback'; // Your redirect uri
 
 //jlawrence: moved veriable so they could be used in test history function
@@ -165,3 +166,5 @@ app.get('/history', function(req, res){
 
 console.log('Listening on 8888');
 app.listen(8888);
+console.log(client_id); 
+console.log(client_secret);
