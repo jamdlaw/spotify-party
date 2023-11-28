@@ -166,5 +166,3 @@ app.get('/history', function(req, res){
 
 console.log('Listening on 8888');
 app.listen(8888);
-console.log(client_id); 
-console.log(client_secret);
