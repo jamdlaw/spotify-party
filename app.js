@@ -17,8 +17,8 @@ var cookieParser = require('cookie-parser');
 const getRecentlyPlayed = require('./getRecentlyPlayed');
 
 
-var client_id = '442aa96883a64532b40575e7cd901590'; // your clientId
-var client_secret = '5697ba2f575148da9331a4dc28aef714'; // Your secret
+var client_id = ''; // your clientId
+var client_secret = ''; // Your secret
 var redirect_uri = 'http://localhost:8888/callback'; // Your redirect uri
 
 //jlawrence: moved veriable so they could be used in test history function
