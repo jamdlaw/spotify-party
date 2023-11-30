@@ -14,6 +14,7 @@ var cors = require('cors');
 var querystring = require('querystring');
 var cookieParser = require('cookie-parser');
 const getRecentlyPlayed = require('./getRecentlyPlayed');
+const mysql = require('./utils/mysqlUtils');
 const dotenv = require('dotenv');
 dotenv.config();
 
@@ -41,6 +42,15 @@ var app = express();
 app.use(express.static(__dirname + '/public'))
    .use(cors())
    .use(cookieParser());
+
+app.get('/createParty', function(req,res){
+    
+    const sqlQuery = 'INSERT INTO host (party_id) VALUES(1)'; 
+    const results = mysql.query(sqlQuery);
+    results.then((data) =>{
+      console.log(data.affectedRows);
+    });
+});
 
 app.get('/login', function(req, res) {
 
