@@ -44,12 +44,17 @@ app.use(express.static(__dirname + '/public'))
    .use(cookieParser());
 
 app.get('/createParty', function(req,res){
+  
+
+   let sqlQuery = 'INSERT INTO party (party_name) VALUES(\'test\')'; 
+   let createParty = mysql.query(sqlQuery);
+   
+   createParty.then((createParty) =>{
+    sqlQuery = 'INSERT INTO host (party_id) VALUES(?)'; 
+    results = mysql.query(sqlQuery, [createParty.insertId]); 
+   }); 
     
-    const sqlQuery = 'INSERT INTO host (party_id) VALUES(1)'; 
-    const results = mysql.query(sqlQuery);
-    results.then((data) =>{
-      console.log(data.affectedRows);
-    });
+  return '';
 });
 
 app.get('/login', function(req, res) {
