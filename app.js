@@ -23,10 +23,6 @@ var client_id = process.env.client_id; // your clientId
 var client_secret = process.env.client_secret; // Your secret
 var redirect_uri = 'http://localhost:8888/callback'; // Your redirect uri
 
-//jlawrence: moved veriable so they could be used in test history function
-var access_token; 
-var refresh_token;
-
 
 const generateRandomString = (length) => {
   return crypto
@@ -107,7 +103,7 @@ app.get('/callback', function(req, res) {
     request.post(authOptions, function(error, response, body) {
       if (!error && response.statusCode === 200) {
 
-            access_token = body.access_token,
+           var access_token = body.access_token,
             refresh_token = body.refresh_token;
 
         var options = {
@@ -167,6 +163,7 @@ app.get('/refresh_token', function(req, res) {
 
 app.get('/history', function(req, res){
 
+  let access_token = req.access_token;
   getRecentlyPlayed(access_token)
   .then(data => {
     const arr = data.map(e => ({
