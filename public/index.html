@@ -86,12 +86,18 @@
         let oauthSource = document.getElementById('oauth-template').innerHTML,
             oauthTemplate = Handlebars.compile(oauthSource),
             oauthPlaceholder = document.getElementById('oauth');
+        
+        const localStorage = window.localStorage;
+  
 
         let params = getHashParams();
 
         let access_token = params.access_token,
             refresh_token = params.refresh_token,
             error = params.error;
+        
+        localStorage.setItem('access_token', params.access_token);
+        localStorage.setItem('refresh_token', params.refresh_token);
 
         if (error) {
           alert('There was an error during the authentication');
