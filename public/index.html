@@ -105,14 +105,14 @@
           if (access_token) {
             // render oauth info
             oauthPlaceholder.innerHTML = oauthTemplate({
-              access_token: access_token,
-              refresh_token: refresh_token
+              access_token: localStorage.getItem('access_token'),
+              refresh_token: localStorage.getItem('refresh_token')
             });
 
             $.ajax({
                 url: 'https://api.spotify.com/v1/me',
                 headers: {
-                  'Authorization': 'Bearer ' + access_token
+                  'Authorization': 'Bearer ' + localStorage.getItem('access_token')
                 },
                 success: function(response) {
                   userProfilePlaceholder.innerHTML = userProfileTemplate(response);
