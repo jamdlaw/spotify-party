@@ -162,8 +162,7 @@ app.get('/refresh_token', function(req, res) {
 });
 
 app.get('/history', function(req, res){
-
-  let access_token = req.access_token;
+  let access_token = req.query.access_token;
   getRecentlyPlayed(access_token)
   .then(data => {
     const arr = data.map(e => ({
@@ -173,6 +172,7 @@ app.get('/history', function(req, res){
 
     res.json(arr);
   });
+  
 });
 
 
