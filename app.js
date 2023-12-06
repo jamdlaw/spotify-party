@@ -39,11 +39,12 @@ app.use(express.static(__dirname + '/public'))
    .use(cors())
    .use(cookieParser());
 
-app.get('/createParty', function(req,res){
+app.post('/createParty', function(req,res){
   
-
-   let sqlQuery = 'INSERT INTO party (party_name) VALUES(\'test\')'; 
-   let createParty = mysql.query(sqlQuery);
+   const partyName = req.query.party_name;
+   console.log(partyName);
+   let sqlQuery = 'INSERT INTO party (party_name) VALUES(?)'; 
+   let createParty = mysql.query(sqlQuery, partyName);
    
    createParty.then((createParty) =>{
     sqlQuery = 'INSERT INTO host (party_id) VALUES(?)'; 
