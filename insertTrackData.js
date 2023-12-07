@@ -10,7 +10,7 @@ const sampleData = {
 */
 
 // Function to insert data into the tables
-export default async function insertDataIntoTables(sampleData)   {
+const insertTrackData = async (sampleData) =>   {
   for (const item of sampleData.items) {
     // Insert artists
     const artist = item.track.artists[0];
@@ -53,5 +53,5 @@ export default async function insertDataIntoTables(sampleData)   {
   console.log('Data inserted successfully.');
 };
 
-
+module.exports = insertTrackData;
  
