@@ -166,11 +166,14 @@ app.get('/history', function(req, res){
   let access_token = req.query.access_token;
   getRecentlyPlayed(access_token)
   .then(data => {
-    const sql = 'INSERT INTO  listen_history_raw_data SET raw = ?';
-    mysql.query(sql, JSON.stringify(data)); 
+    //const sql = 'INSERT INTO  listen_history_raw_data SET raw = ?';
+    //mysql.query(sql, JSON.stringify(data));
+    
+    
     const arr = data.map(e => ({
       played_at: e.played_at,
       track_name: e.track.name,
+      track_uri: e.track.uri.substring(e.track.uri.indexOf('track:') + 6),
     }));
 
     res.json(arr);
