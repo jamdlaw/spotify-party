@@ -43,7 +43,6 @@ app.use(express.static(__dirname + '/public'))
 app.post('/createParty', function(req,res){
   
    const partyName = req.query.party_name;
-   console.log(partyName);
    let sqlQuery = 'INSERT INTO party (party_name) VALUES(?)'; 
    let createParty = mysql.query(sqlQuery, partyName);
    
@@ -167,9 +166,7 @@ app.get('/history', function(req, res){
   let access_token = req.query.access_token;
   getRecentlyPlayed(access_token)
   .then(data => {
-    //const sql = 'INSERT INTO  listen_history_raw_data SET raw = ?';
-    //mysql.query(sql, JSON.stringify(data));
-    insertTrackData(data);    
+    insertTrackData(data);   
     const arr = data.map(e => ({
       played_at: e.played_at,
       track_name: e.track.name,
