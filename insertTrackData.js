@@ -48,7 +48,7 @@ const insertTrackData = async (sampleData) =>   {
       item.track.is_local,
       item.played_at
     ]);
-  
+    
   }
 
   console.log('Data inserted successfully.');
