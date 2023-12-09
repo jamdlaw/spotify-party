@@ -17,12 +17,13 @@ const getRecentlyPlayed = require('./getRecentlyPlayed');
 const mysql = require('./utils/mysqlUtils');
 const insertTrackData = require('./insertTrackData'); 
 const dotenv = require('dotenv');
+const bodyParser = require('body-parser');
 dotenv.config();
-
 
 var client_id = process.env.client_id; // your clientId
 var client_secret = process.env.client_secret; // Your secret
 var redirect_uri = 'http://localhost:8888/callback'; // Your redirect uri
+
 
 
 const generateRandomString = (length) => {
@@ -36,12 +37,17 @@ var stateKey = 'spotify_auth_state';
 
 var app = express();
 
+// parse application/json
+app.use(bodyParser.json());
+
 app.use(express.static(__dirname + '/public'))
    .use(cors())
    .use(cookieParser());
 
 app.post('/createUser', function(req,res){
-  console.log(req.body);
+  const userData = (req.body.name);
+  
+  res.send(userData); 
 });
 
 app.post('/createParty', function(req,res){
