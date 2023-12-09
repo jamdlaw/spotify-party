@@ -45,9 +45,12 @@ app.use(express.static(__dirname + '/public'))
    .use(cookieParser());
 
 app.post('/createUser', function(req,res){
-  const userData = (req.body.name);
+  const name = req.body.name;
+  const email = req.body.email;
+  const sql = "INSERT INTO users (name , email) VALUES(?, ?)";  
+  mysql.query(sql, [name , email]);
   
-  res.send(userData); 
+  res.send('All Done');
 });
 
 app.post('/createParty', function(req,res){
