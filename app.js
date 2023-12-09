@@ -40,6 +40,10 @@ app.use(express.static(__dirname + '/public'))
    .use(cors())
    .use(cookieParser());
 
+app.post('/createUser', function(req,res){
+  console.log(req.body);
+});
+
 app.post('/createParty', function(req,res){
   
    const partyName = req.query.party_name;
