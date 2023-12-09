@@ -46,7 +46,9 @@ app.post('/createUser', function(req,res){
 
 app.post('/createParty', function(req,res){
   
-   const partyName = req.query.party_name;
+   const partyName = req.query.party_name ? req.query.party_name : 'party name not set';
+   res.send(partyName);
+   /*
    let sqlQuery = 'INSERT INTO party (party_name) VALUES(?)'; 
    let createParty = mysql.query(sqlQuery, partyName);
    
@@ -54,8 +56,8 @@ app.post('/createParty', function(req,res){
     sqlQuery = 'INSERT INTO host (party_id) VALUES(?)'; 
     results = mysql.query(sqlQuery, [createParty.insertId]); 
    }); 
-    
-  return '';
+   return '';    
+   */
 });
 
 app.get('/login', function(req, res) {
