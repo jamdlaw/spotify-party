@@ -12,6 +12,7 @@ const sampleData = {
 // Function to insert data into the tables
 const insertTrackData = async (sampleData) =>   {
   for (const item of sampleData) {
+    
     // Insert artists
     const artist = item.track.artists;
     for (const a of artist){
@@ -19,7 +20,7 @@ const insertTrackData = async (sampleData) =>   {
         a.id, a.name, a.uri
       ]);
     }
-    /*
+    
     // Insert albums
     const album = item.track.album;
     mysql.query('INSERT IGNORE INTO Albums (album_id, album_name, album_type, total_tracks, release_date) VALUES (?, ?, ?, ?, ?)', [
@@ -47,7 +48,7 @@ const insertTrackData = async (sampleData) =>   {
       item.track.is_local,
       item.played_at
     ]);
-  */
+  
   }
 
   console.log('Data inserted successfully.');
