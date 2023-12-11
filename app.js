@@ -16,6 +16,7 @@ var cookieParser = require('cookie-parser');
 const getRecentlyPlayed = require('./getRecentlyPlayed');
 const mysql = require('./utils/mysqlUtils');
 const insertTrackData = require('./insertTrackData'); 
+const getRecommendations = require('./getRecommendations');
 const dotenv = require('dotenv');
 const bodyParser = require('body-parser');
 dotenv.config();
@@ -193,6 +194,19 @@ app.get('/history', function(req, res){
   });
   
 });
+
+app.get('/getRecommendations', function(req, res){
+  let access_token = req.query.access_token;
+  getRecommendations(access_token)
+  /*
+  .then(data => {
+     console.log(data);     
+    });
+    */
+    res.send('done');
+  });
+  
+
 
 
 console.log('Listening on 8888');
