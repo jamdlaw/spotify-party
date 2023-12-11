@@ -45,8 +45,7 @@ app.use(express.static(__dirname + '/public'))
    .use(cookieParser());
 
 app.post('/createUser', function(req,res){
-  const name = req.body.name;
-  const email = req.body.email;
+  const {name, email} = req.body;
   const sql = "INSERT INTO users (name , email) VALUES(?, ?)";  
   mysql.query(sql, [name , email]);
   
