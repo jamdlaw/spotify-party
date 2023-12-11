@@ -56,7 +56,11 @@ app.post('/createParty', function(req,res){
   const { userId, partyName } = req.body;
   const sqlQuery = 'INSERT INTO party ( party_name, user_id ) VALUES(?,?)';
   let results = '';
-  mysql.query(sqlQuery,[partyName , userId] );
+  try{
+    mysql.query(sqlQuery,[partyName , userId] );
+  } catch(error){
+    console.log(error);
+  }
   
    res.send('done');    
   
