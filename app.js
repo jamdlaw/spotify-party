@@ -46,8 +46,12 @@ app.use(express.static(__dirname + '/public'))
 
 app.post('/createUser', function(req,res){
   const {name, email} = req.body;
-  const sql = "INSERT INTO users (name , email) VALUES(?, ?)";  
-  mysql.query(sql, [name , email]);
+  const sql = "INSERT INTO users (name , email) VALUES(?, ?)";
+  try{  
+    mysql.query(sql, [name , email]);
+  } catch(error){
+    console.log(error);
+  }
   
   res.send('All Done');
 });
@@ -61,7 +65,7 @@ app.post('/createParty', function(req,res){
   } catch(error){
     console.log(error);
   }
-  
+
    res.send('done');    
   
 });
