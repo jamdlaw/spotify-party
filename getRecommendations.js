@@ -4,6 +4,7 @@ const getRecommendations = (accessToken) => {
   const sqlQuery = 'SELECT distinct track_id FROM tracks limit 5'; 
   const seedTracks = [];
   let queryString = '';
+  let recommendations = '';
   mysql.query(sqlQuery).then(data =>{
     data.forEach(track => {
       seedTracks.push(track.track_id);
@@ -26,10 +27,9 @@ const getRecommendations = (accessToken) => {
       Authorization: `Bearer ${accessToken}`,
     },
   })
-    .then(data => {console.log(data)})
-    //.then(data => console.log(data))
-    .catch(error => console.log(error));
-  
+  .then(res => res.json())
+  .then(data => data.tracks)
+  .catch(error => console.log(error));
 };
   
 
