@@ -13,23 +13,22 @@ const getRecommendations = (accessToken) => {
       const params = new URLSearchParams(query);
       const queryString = params.toString();
       console.log(queryString);
-  });
+      const url = 'https://api.spotify.com/v1/recommendations?' + queryString;
+    //const url = 'https://api.spotify.com/v1/recommendations?seed_tracks=0c6xIDDpzE81m2q797ordA,0dFKeiAqnUlyezHPdflj8n'
     
-  //const url = 'https://api.spotify.com/v1/recommendations?' + queryString;
-  const url = 'https://api.spotify.com/v1/recommendations?seed_artists=4NHQUGzhtTLFvgF5SZesLK&seed_genres=classical%2Ccountry&seed_tracks=0c6xIDDpzE81m2q797ordA'
-  //console.log(url);
-  
-  return fetch(url, {
-    method: 'GET',
-    headers: {
-      Accept: 'application/json',
-      'Content-Type': 'application/json',
-      Authorization: `Bearer ${accessToken}`,
-    },
-  })
-  .then(res => res.json())
-  .then(data => data.tracks)
-  .catch(error => console.log(error));
+    return fetch(url, {
+      method: 'GET',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${accessToken}`,
+      },
+    })
+    .then(res => res.json())
+    .then(data => data.tracks)
+    .catch(error => console.log(error));
+    });
+      
 };
   
 
