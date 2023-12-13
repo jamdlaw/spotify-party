@@ -198,6 +198,11 @@ app.get('/history', function(req, res){
 app.get('/getRecommendations', async function(req, res){
   let access_token = req.query.access_token;
   data = await getRecommendations(access_token);
+  data.forEach(track => {
+    //console.log(track.id, track.name, track.external_urls);
+    sql = "INSERT INTO recommended_tracks (track_id ,name , external_urls) VALUES (?,?,?)";
+    mysql.query(sql, [track.id, track.name, track.external_urls.spotify]);
+  });
   res.send(data);
 });
 
