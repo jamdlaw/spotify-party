@@ -1,5 +1,5 @@
 
-const getRecentlyPlayed = accessToken => {
+const getRecentlyPlayed = async accessToken => {
   const url = 'https://api.spotify.com/v1/me/player/recently-played?limit=10';
 
   return fetch(url, {

@@ -195,16 +195,11 @@ app.get('/history', function(req, res){
   
 });
 
-app.get('/getRecommendations', function(req, res){
+app.get('/getRecommendations', async function(req, res){
   let access_token = req.query.access_token;
-  getRecommendations(access_token)
-  /*
-  .then(data => {
-     console.log(data);     
-    });
-    */
-    res.send('done');
-  });
+  data = await getRecommendations(access_token);
+  return data;
+});
   
 
 
