@@ -198,11 +198,9 @@ app.get('/history', function(req, res){
 app.get('/getRecommendations', async function(req, res){
   let access_token = req.query.access_token;
   data = await getRecommendations(access_token);
-  return data;
+  res.send(data);
 });
   
-
-
 
 console.log('Listening on 8888');
 app.listen(8888);

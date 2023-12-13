@@ -35,6 +35,9 @@
         <button class="btn btn-default" id="get-listen-history">Get Listen History</button>
         <button class="btn btn-default" id="get-recommendations">Get Recommendations</button>
       </div>
+      <div id="albumInfo">
+        
+      </div>
     </div>
 
     <script id="user-profile-template" type="text/x-handlebars-template">
@@ -140,7 +143,9 @@
                 'access_token': localStorage.getItem('access_token')
               }
             }).done(function(data) {
-              console.log(data);
+              data.forEach(element => {
+                displayAlbumInfo(element);       
+              });
             });  
           }, false);
           
@@ -177,6 +182,37 @@
           console.error('Error creating party:', error);
         });
       });
+
+      // Function to display album information
+  function displayAlbumInfo(album) {
+      const albumInfoDiv = document.getElementById('albumInfo');
+
+      // Create elements to display album data
+      const albumTitle = document.createElement('h2');
+      albumTitle.textContent = album.album.name;
+
+      const albumImage = document.createElement('img');
+      albumImage.src = album.album.images[0].url;
+      albumImage.alt = album.album.name;
+
+      const albumReleaseDate = document.createElement('p');
+      albumReleaseDate.textContent = `Release Date: ${album.album.release_date}`;
+
+      const albumTracks = document.createElement('p');
+      albumTracks.textContent = `Total Tracks: ${album.album.total_tracks}`;
+
+      const artistLink = document.createElement('a');
+      artistLink.href = album.artists[0].external_urls.spotify;
+      artistLink.textContent = `Artist: ${album.artists[0].name}`;
+
+      // Append elements to the albumInfoDiv
+      albumInfoDiv.appendChild(albumTitle);
+      albumInfoDiv.appendChild(albumImage);
+      albumInfoDiv.appendChild(albumReleaseDate);
+      albumInfoDiv.appendChild(albumTracks);
+      albumInfoDiv.appendChild(artistLink);
+  }
+
     </script>
   </body>
 </html>
