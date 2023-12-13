@@ -17,6 +17,7 @@ const getRecentlyPlayed = require('./getRecentlyPlayed');
 const mysql = require('./utils/mysqlUtils');
 const insertTrackData = require('./insertTrackData'); 
 const getRecommendations = require('./getRecommendations');
+const createPlaylist = require('./createPlaylist');
 const dotenv = require('dotenv');
 const bodyParser = require('body-parser');
 dotenv.config();
@@ -207,8 +208,10 @@ app.get('/getRecommendations', async function(req, res){
 });
 
 app.get('/createPlaylist', function(req, res){
-   console.log('made it to node');
-   res.send('howdy');
+  let access_token = req.query.access_token;
+   createPlaylist(access_token);
+   
+  res.send('create playlist');
 });
 
 console.log('Listening on 8888');
