@@ -200,7 +200,11 @@ app.get('/getRecommendations', async function(req, res){
   data = await getRecommendations(access_token);
   res.send(data);
 });
-  
+
+app.get('/createPlaylist', function(req, res){
+   console.log('made it to node');
+   res.send('howdy');
+});
 
 console.log('Listening on 8888');
 app.listen(8888);

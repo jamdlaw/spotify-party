@@ -34,6 +34,7 @@
         <button class="btn btn-default" id="obtain-new-token">Obtain new token using the refresh token</button>
         <button class="btn btn-default" id="get-listen-history">Get Listen History</button>
         <button class="btn btn-default" id="get-recommendations">Get Recommendations</button>
+        <button class="btn btn-default" id="create-playlist">Create Playlist</button>
       </div>
       <div id="albumInfo">
         
@@ -182,7 +183,19 @@
           console.error('Error creating party:', error);
         });
       });
-
+       
+      //create playlist 
+      document.getElementById("create-playlist").addEventListener("click",function(event){
+        fetch('/createPlaylist', {
+          method: 'GET',
+        })
+        .then(response => {
+          // Handle the response as needed
+          console.log(done);
+        })
+        .catch(error => {
+      });
+    });
       // Function to display album information
   function displayAlbumInfo(album) {
       const albumInfoDiv = document.getElementById('albumInfo');
