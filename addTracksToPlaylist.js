@@ -1,16 +1,17 @@
 const mysql = require('./utils/mysqlUtils');
 
 const addTracksToPlaylist = async (playlistId) => {
-    /* new code BUT look at the old code first
-    the new way is better */
-    /*
+     
     sql = "SELECT track_id FROM recommended_tracks limit 5;";
     tracks = await mysql.query(sql);
-    
+    /*
     tracks.forEach(track => {
        console.log(track.track_id);
     });
     */
+    uris = tracks.map( (track) => track.track_id); 
+    console.log(uris);
+    /*
     // this is the old code that needs to be converted 
     try {
         const uris = recommendations.map((track) => track.uri);
@@ -31,6 +32,7 @@ const addTracksToPlaylist = async (playlistId) => {
     } catch (error) {
         console.error("Error adding tracks to playlist:", error);
     }
+    */
   }
   
 module.exports = addTracksToPlaylist;
