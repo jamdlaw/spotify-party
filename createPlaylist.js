@@ -1,4 +1,6 @@
+const addTracksToPlaylist = require('./addTracksToPlaylist');
 const mysql = require('./utils/mysqlUtils');
+
 
 const createPlaylist = async (accessToken) => {
     
