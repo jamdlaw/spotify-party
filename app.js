@@ -78,7 +78,7 @@ app.get('/login', function(req, res) {
   res.cookie(stateKey, state);
 
   // your application requests authorization
-  var scope = 'user-read-private user-read-email user-read-recently-played';
+  var scope = 'user-read-private user-read-email user-read-recently-played playlist-modify-public playlist-modify-private';
   res.redirect('https://accounts.spotify.com/authorize?' +
     querystring.stringify({
       response_type: 'code',
@@ -207,10 +207,14 @@ app.get('/getRecommendations', async function(req, res){
   res.send(data);
 });
 
-app.get('/createPlaylist', function(req, res){
-  let access_token = req.query.access_token;
+app.post('/createPlaylist', function(req, res){
+  console.log('made it to node');
+  
+  let access_token = req.body.access_token;
+  console.log(access_token);
+  /*
    createPlaylist(access_token);
-   
+  */
   res.send('create playlist');
 });
 
