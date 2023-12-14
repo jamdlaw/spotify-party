@@ -19,11 +19,11 @@ const createPlaylist = (accessToken) => {
       'Content-Type': 'application/json',
       Authorization: `Bearer ${accessToken}`,
     },
-    body:{
+    body:JSON.stringify({
         "name": "New Playlist",
         "description": "New playlist description",
         "public": false 
-    }
+    })
   })
   .then(res => res.json())
   .then(data => console.log(data))

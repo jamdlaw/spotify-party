@@ -208,13 +208,9 @@ app.get('/getRecommendations', async function(req, res){
 });
 
 app.post('/createPlaylist', function(req, res){
-  console.log('made it to node');
-  
   let access_token = req.body.access_token;
-  console.log(access_token);
-  /*
-   createPlaylist(access_token);
-  */
+  createPlaylist(access_token);
+  
   res.send('create playlist');
 });
 
