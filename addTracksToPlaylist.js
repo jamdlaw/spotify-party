@@ -9,9 +9,11 @@ const addTracksToPlaylist = async (playlistId) => {
        console.log(track.track_id);
     });
     */
+    
     uris = tracks.map( (track) => track.track_id); 
     console.log(uris);
     /*
+    12/15/ can't continue to work becuase comuter keeps crashing
     // this is the old code that needs to be converted 
     try {
         const uris = recommendations.map((track) => track.uri);
