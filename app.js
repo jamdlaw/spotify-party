@@ -214,7 +214,7 @@ app.post('/createPlaylist', function(req, res){
   res.send('create playlist');
 });
 
-app.get('/addTracksToPlaylist', function(req, res){
+app.post('/addTracksToPlaylist', function(req, res){
   let access_token = req.body.access_token;
   addTracksToPlaylist(access_token);
   
