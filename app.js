@@ -216,7 +216,8 @@ app.post('/createPlaylist', function(req, res){
 
 app.post('/addTracksToPlaylist', function(req, res){
   let access_token = req.body.access_token;
-  addTracksToPlaylist(access_token);
+  const playlistId = ''; // hardcode playlist id for write now while testing
+  addTracksToPlaylist(access_token,playlistId);
   
   res.send('tracks added');
 })

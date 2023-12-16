@@ -1,6 +1,6 @@
 const mysql = require('./utils/mysqlUtils');
 
-const addTracksToPlaylist = async (playlistId) => {
+const addTracksToPlaylist = async (access_token, playlistId) => {
      
     sql = "SELECT track_id FROM recommended_tracks limit 5;";
     tracks = await mysql.query(sql);
