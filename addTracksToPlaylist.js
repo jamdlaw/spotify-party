@@ -2,33 +2,23 @@ const mysql = require('./utils/mysqlUtils');
 
 const addTracksToPlaylist = async (access_token, playlistId) => {
      
-    sql = "SELECT track_id FROM recommended_tracks limit 5;";
+    sql = "SELECT uris FROM recommended_tracks limit 5;";
     tracks = await mysql.query(sql);
     uris = tracks.map( (track) => track.track_id); 
     //console.log(uris);
-    /*
-    12/15/ can't continue to work becuase comuter keeps crashing
-    // this is the old code that needs to be converted 
-    try {
-        const uris = recommendations.map((track) => track.uri);
-        const { data } = await axios.post(
-            `https://api.spotify.com/v1/playlists/${playlistId}/tracks`,
-            {
-                uris: uris,
-            },
-            {
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                    "Content-Type": "application/json",
-                },
-            }
-        );
-  
-        console.log("Tracks added to playlist:", data);
-    } catch (error) {
-        console.error("Error adding tracks to playlist:", error);
-    }
-    */
-  }
+    url = `https://api.spotify.com/v1/playlists/${playlistId}/tracks`
+    return fetch(url, {
+        method: 'POST',
+        headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${access_token}`,
+        },
+        body:JSON.stringify({"uris": uris})
+        })
+        .then(res => res.json())
+        .then(data => console.log(data))
+        .catch(error => console.log(error));
+  };
   
 module.exports = addTracksToPlaylist;
