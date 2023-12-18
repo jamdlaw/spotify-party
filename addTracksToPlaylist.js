@@ -4,7 +4,7 @@ const addTracksToPlaylist = async (access_token, playlistId) => {
      
     sql = "SELECT uris FROM recommended_tracks limit 5;";
     tracks = await mysql.query(sql);
-    uris = tracks.map( (track) => track.track_id); 
+    uris = tracks.map( (track) => track.uris); 
     //console.log(uris);
     url = `https://api.spotify.com/v1/playlists/${playlistId}/tracks`
     return fetch(url, {
