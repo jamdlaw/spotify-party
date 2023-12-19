@@ -60,6 +60,7 @@ app.post('/createUser', function(req,res){
 });
 
 app.post('/createParty', function(req,res){
+  
   const { userId, partyName } = req.body;
   const sqlQuery = 'INSERT INTO party ( party_name, user_id ) VALUES(?,?)';
   let results = '';
