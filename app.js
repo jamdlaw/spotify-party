@@ -14,9 +14,9 @@ const dotenv = require('dotenv');
 const bodyParser = require('body-parser');
 dotenv.config();
 
-var client_id = process.env.client_id; // your clientId
-var client_secret = process.env.client_secret; // Your secret
-var redirect_uri = 'http://localhost:8888/callback'; // Your redirect uri
+const client_id = process.env.client_id; // your clientId
+const client_secret = process.env.client_secret; // Your secret
+const redirect_uri = 'http://localhost:8888/callback'; // Your redirect uri
 
 
 
@@ -27,9 +27,9 @@ const generateRandomString = (length) => {
   .slice(0, length);
 }
 
-var stateKey = 'spotify_auth_state';
+const stateKey = 'spotify_auth_state';
 
-var app = express();
+const app = express();
 
 // parse application/json
 app.use(bodyParser.json());
