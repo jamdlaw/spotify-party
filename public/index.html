@@ -20,9 +20,9 @@
     <div class="container">
       <div id="login">
         <h1>Join the party!</h1>
-        <form action="/createParty" name="partyForm" id="partyForm" method="post">
+        <form action="" name="partyform" id="partyform" method="post">
           <input type="text" name="party_name" id="party_name">
-          <a type="submit" class="btn btn-primary">Create a party</a>
+          <input type="submit" class="btn btn-primary" value="Create a party">
         </form>
         <a href="/joinParty" class="btn btn-primary">Join a party</a>
       </div>
@@ -166,8 +166,9 @@
       })();
     
       //outside of jquery
-      document.getElementById("partyForm").addEventListener("submit", function(event) {
-        console.log('made it here');
+
+      //create party
+      document.getElementById("partyform").addEventListener("submit", function(event) {
         event.preventDefault();
         const formData = new FormData(this);
         
@@ -183,6 +184,7 @@
           // Handle errors
           console.error('Error creating party:', error);
         });
+        
       });
        
    //create playlist 
