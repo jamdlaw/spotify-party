@@ -171,7 +171,8 @@
       document.getElementById("partyform").addEventListener("submit", function(event) {
         event.preventDefault();
         const formData = new FormData(this);
-        
+        // having trouble focusing,
+        // need to fix data being sent from request
         fetch('/createParty', {
           method: 'POST',
           body: formData
