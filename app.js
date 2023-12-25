@@ -68,11 +68,11 @@ app.post('/createParty', function(req,res){
 
 app.get('/login', function(req, res) {
 
-  var state = generateRandomString(16);
+  const state = generateRandomString(16);
   res.cookie(stateKey, state);
 
   // your application requests authorization
-  var scope = 'user-read-private user-read-email user-read-recently-played playlist-modify-public playlist-modify-private';
+  const scope = 'user-read-private user-read-email user-read-recently-played playlist-modify-public playlist-modify-private';
   res.redirect('https://accounts.spotify.com/authorize?' +
     querystring.stringify({
       response_type: 'code',
