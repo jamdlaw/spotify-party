@@ -4,21 +4,20 @@ const crypto = require('crypto');
 const cors = require('cors');
 const querystring = require('querystring');
 const cookieParser = require('cookie-parser');
-const getRecentlyPlayed = require('./getRecentlyPlayed');
 const mysql = require('./utils/mysqlUtils');
+const dotenv = require('dotenv');
+const bodyParser = require('body-parser');
+const getRecentlyPlayed = require('./getRecentlyPlayed');
 const insertTrackData = require('./insertTrackData'); 
 const getRecommendations = require('./getRecommendations');
 const createPlaylist = require('./createPlaylist');
 const addTracksToPlaylist = require('./addTracksToPlaylist');
-const dotenv = require('dotenv');
-const bodyParser = require('body-parser');
 dotenv.config();
+const app = express();
 
 const client_id = process.env.client_id; // your clientId
 const client_secret = process.env.client_secret; // Your secret
 const redirect_uri = 'http://localhost:8888/callback'; // Your redirect uri
-
-
 
 const generateRandomString = (length) => {
   return crypto
@@ -28,8 +27,6 @@ const generateRandomString = (length) => {
 }
 
 const stateKey = 'spotify_auth_state';
-
-const app = express();
 
 // parse application/json
 app.use(bodyParser.json());
