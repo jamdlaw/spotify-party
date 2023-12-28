@@ -48,11 +48,11 @@ app.post('/createUser', function(req,res){
   res.send('All Done');
 });
 
-app.post('/createParty', function(req,res){
+app.post('/createParty', async function(req,res){
   
   const {userid, partyname } = req.body;
-  createParty(userid, partyname);
-  res.send('done');    
+  const partyId = await createParty(userid, partyname);
+  res.send(JSON.stringify({partyId: partyId}));    
 });
 
 app.get('/login', function(req, res) {
