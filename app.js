@@ -12,7 +12,7 @@ const insertTrackData = require('./insertTrackData');
 const getRecommendations = require('./getRecommendations');
 const createPlaylist = require('./createPlaylist');
 const addTracksToPlaylist = require('./addTracksToPlaylist');
-const addTracksToPlaylist = require('./createParty');
+const createParty = require('./createParty');
 dotenv.config();
 const app = express();
 
@@ -52,6 +52,7 @@ app.post('/createParty', async function(req,res){
   
   const {userid, partyname } = req.body;
   const partyId = await createParty(userid, partyname);
+  console.log('from app.js ' + partyId);
   res.send(JSON.stringify({partyId: partyId}));    
 });
 
