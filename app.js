@@ -12,6 +12,7 @@ const insertTrackData = require('./insertTrackData');
 const getRecommendations = require('./getRecommendations');
 const createPlaylist = require('./createPlaylist');
 const addTracksToPlaylist = require('./addTracksToPlaylist');
+const addTracksToPlaylist = require('./createParty');
 dotenv.config();
 const app = express();
 
@@ -50,17 +51,8 @@ app.post('/createUser', function(req,res){
 app.post('/createParty', function(req,res){
   
   const {userid, partyname } = req.body;
-  
-  const sqlQuery = 'INSERT INTO party ( party_name, user_id ) VALUES(?,?)';
-  let results = '';
-  try{
-    mysql.query(sqlQuery,[partyname , userid] );
-  } catch(error){
-    console.log(error);
-  }
-
-   res.send('done');    
-  
+  createParty(userid, partyname);
+  res.send('done');    
 });
 
 app.get('/login', function(req, res) {
