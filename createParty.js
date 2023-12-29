@@ -1,10 +1,10 @@
 const mysql = require('./utils/mysqlUtils');
 
 const createParty = async (userId, partyName) => {
-  const sqlQuery = 'INSERT INTO party ( party_name, user_id ) VALUES(?,?)';
+  const sqlQuery = 'INSERT INTO party ( user_id, party_name  ) VALUES(?,?)';
   let results = '';
   try{
-    results = await mysql.query(sqlQuery,[partyName , userId]);
+    results = await mysql.query(sqlQuery,[userId, partyName]);
   }catch(error){
     console.log(error);
   }
