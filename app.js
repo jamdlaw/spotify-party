@@ -12,6 +12,7 @@ const insertTrackData = require('./insertTrackData');
 const getRecommendations = require('./getRecommendations');
 const createPlaylist = require('./createPlaylist');
 const addTracksToPlaylist = require('./addTracksToPlaylist');
+const createUser = require('./createUser');
 const createParty = require('./createParty');
 dotenv.config();
 const app = express();
@@ -36,16 +37,11 @@ app.use(express.static(__dirname + '/public'))
    .use(cors())
    .use(cookieParser());
 
-app.post('/createUser', function(req,res){
+app.post('/createUser', async function(req,res){
   const {name, email} = req.body;
-  const sql = "INSERT INTO users (name , email) VALUES(?, ?)";
-  try{  
-    mysql.query(sql, [name , email]);
-  } catch(error){
-    console.log(error);
-  }
-  
-  res.send('All Done');
+  results = await createUser(name, email);
+  console.log('app.js ' + results);
+  res.send(results);
 });
 
 app.post('/createParty', async function(req,res){
