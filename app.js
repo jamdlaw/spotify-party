@@ -207,8 +207,7 @@ app.post('/addTracksToPlaylist', function(req, res){
 
 app.get('/testUserId', async function(req, res){
    results = await getUserId('jamdlaw@yahoo.com');
-   console.log(results);
-
+  
    res.send(results);
 })
 console.log('Listening on 8888');
