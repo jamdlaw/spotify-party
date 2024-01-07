@@ -1,6 +1,6 @@
 const mysql = require('./utils/mysqlUtils');
 const getUserId = require('./getUserId');
-const getUserId = require('./createUser');
+const createUser = require('./createUser');
 
 const getOrInsertUser = async (email, name) => {
 //check if user exists? 
