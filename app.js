@@ -14,7 +14,7 @@ const createPlaylist = require('./createPlaylist');
 const addTracksToPlaylist = require('./addTracksToPlaylist');
 const createUser = require('./createUser');
 const createParty = require('./createParty');
-const getUserId = require('./getUserId');
+const getOrInsertUser = require('./getOrInsertUser');
 
 dotenv.config();
 const app = express();
@@ -206,8 +206,7 @@ app.post('/addTracksToPlaylist', function(req, res){
 })
 
 app.get('/testUserId', async function(req, res){
-   results = await getUserId('jamdlaw@yahoo.com');
-  
+   results = await getOrInsertUser('test7@test.com', 'earl lawrnece'); 
    res.send(results);
 })
 console.log('Listening on 8888');

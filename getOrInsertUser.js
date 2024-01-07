@@ -13,7 +13,7 @@ if(userId){
 //insert new user
 userId = await createUser(name , email);
 
-return userId; 
+return {"id" : userId.insertId}; 
 }
 
 module.exports = getOrInsertUser;
