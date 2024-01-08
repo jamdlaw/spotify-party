@@ -107,7 +107,7 @@ app.get('/callback', function(req, res) {
 
            let access_token = body.access_token,
             refresh_token = body.refresh_token;
-
+        /* jlawrence: remove this example code soon 01/08/2024
         let options = {
           url: 'https://api.spotify.com/v1/me',
           headers: { 'Authorization': 'Bearer ' + access_token },
@@ -118,6 +118,7 @@ app.get('/callback', function(req, res) {
         request.get(options, function(error, response, body) {
           console.log(body);
         });
+        */
 
         // we can also pass the token to the browser to make requests from there
         res.redirect('/#' +
