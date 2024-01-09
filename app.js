@@ -80,7 +80,8 @@ app.get('/callback', async function(req, res) {
   let code = req.query.code || null;
   let state = req.query.state || null;
   let storedState = req.cookies ? req.cookies[stateKey] : null;
-
+  //console.log('req object' , req.email);
+  //console.log('res object' , res.email);
   if (state === null || state !== storedState) {
     res.redirect('/#' +
       querystring.stringify({
@@ -102,21 +103,22 @@ app.get('/callback', async function(req, res) {
       json: true
     };
 
+    const spotifyUserProfile = await getProfileData(body.email, body.display_name);
+
     //now that we are logged into spotify we can get or make userid
-    let userId = await getOrInsertUser('test7@test.com', 'earl lawrnece');
+    let userId = await getOrInsertUserFromProfile(spotifyUserProfile.email , spotifyUserProfile.display_name);
 
     request.post(authOptions,  function(error, response, body) {
       if (!error && response.statusCode === 200) {
 
            let access_token = body.access_token,
             refresh_token = body.refresh_token;
-          
         // we can also pass the token to the browser to make requests from there
         res.redirect('/#' +
           querystring.stringify({
             access_token: access_token,
-            refresh_token: refresh_token
-            //userId: userId
+            refresh_token: refresh_token,
+            userId: userId
           }));
       } else {
         res.redirect('/#' +
