@@ -111,30 +111,12 @@ app.get('/callback', async function(req, res) {
            let access_token = body.access_token,
             refresh_token = body.refresh_token;
           
-        /* jlawrence: we can remove this code when we 
-        figure out how email and display_name are being recived already.
-        */
-        let options = {
-          url: 'https://api.spotify.com/v1/me',
-          headers: { 'Authorization': 'Bearer ' + access_token },
-          json: true
-        };
-
-        // use the access token to access the Spotify Web API
-        let userId = ''; 
-        request.get(options, async function(error, response, body) {
-          console.log(body.email , body.display_name);
-          userId = await getOrInsertUser(body.email, body.display_name);  
-          console.log(userId);     
-        });
-        
-        
         // we can also pass the token to the browser to make requests from there
         res.redirect('/#' +
           querystring.stringify({
             access_token: access_token,
-            refresh_token: refresh_token,
-            userId: userId
+            refresh_token: refresh_token
+            //userId: userId
           }));
       } else {
         res.redirect('/#' +
