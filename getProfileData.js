@@ -1,3 +1,4 @@
+const request = require('request');
 
 const getProfileData = async (access_token) => {
     let options = {
