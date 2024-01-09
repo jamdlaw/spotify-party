@@ -15,6 +15,7 @@ const addTracksToPlaylist = require('./addTracksToPlaylist');
 const createUser = require('./createUser');
 const createParty = require('./createParty');
 const getOrInsertUser = require('./getOrInsertUser');
+const getProfileData = require('./getProfileData');
 
 dotenv.config();
 const app = express();
@@ -103,22 +104,26 @@ app.get('/callback', async function(req, res) {
       json: true
     };
 
-    const spotifyUserProfile = await getProfileData(body.email, body.display_name);
-
-    //now that we are logged into spotify we can get or make userid
-    let userId = await getOrInsertUserFromProfile(spotifyUserProfile.email , spotifyUserProfile.display_name);
-
-    request.post(authOptions,  function(error, response, body) {
+    
+    request.post(authOptions,  async function(error, response, body) {
       if (!error && response.statusCode === 200) {
 
            let access_token = body.access_token,
             refresh_token = body.refresh_token;
+
+        //TODO trying to get the email and profile name so I can create a user 
+        //const spotifyUserProfile = await getProfileData(access_token);
+        //console.log(spotifyUserProfile);
+        //now that we are logged into spotify we can get or make userid
+        //const userId = await getOrInsertUserFromProfile(spotifyUserProfile.email , spotifyUserProfile.display_name);
+        //console.log(userId);
+
         // we can also pass the token to the browser to make requests from there
         res.redirect('/#' +
           querystring.stringify({
             access_token: access_token,
-            refresh_token: refresh_token,
-            userId: userId
+            refresh_token: refresh_token
+           // userId: userId
           }));
       } else {
         res.redirect('/#' +
