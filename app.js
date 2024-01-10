@@ -107,27 +107,19 @@ app.get('/callback', async function(req, res) {
     request.post(authOptions,  async function(error, response, body) {
       if (!error && response.statusCode === 200) {
 
-           let access_token = body.access_token,
-            refresh_token = body.refresh_token;
+        let access_token = body.access_token,
+        refresh_token = body.refresh_token;
 
-            let options = {
-              url: 'https://api.spotify.com/v1/me',
-              headers: { 'Authorization': 'Bearer ' + access_token },
-              json: true
-            };
-
-            const profile = await getProfileData(access_token);
-            
-            const UserId = await getOrInsertUser(profile.email, profile.display_name);
-
-            console.log(UserId); 
+        const profile = await getProfileData(access_token);
+        
+        const UserId = await getOrInsertUser(profile.email, profile.display_name);
 
         // we can also pass the token to the browser to make requests from there
         res.redirect('/#' +
           querystring.stringify({
             access_token: access_token,
             refresh_token: refresh_token,
-            userId: UserId
+            userId: UserId.id
           }));
       } else {
         res.redirect('/#' +
