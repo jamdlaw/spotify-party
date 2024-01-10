@@ -1,6 +1,7 @@
 const request = require('request');
 
 const getProfileData = async (access_token) => {
+  return new Promise((resolve, reject) => {
     let options = {
         url: 'https://api.spotify.com/v1/me',
         headers: { 'Authorization': 'Bearer ' + access_token },
@@ -11,9 +12,9 @@ const getProfileData = async (access_token) => {
     let userId = ''; 
     request.get(options, async function(error, response, body) {
         //console.log(body.email , body.display_name);
-        return body;      
+        resolve(body);      
     });
-
+  });
 }
 
 module.exports = getProfileData;

@@ -81,8 +81,7 @@ app.get('/callback', async function(req, res) {
   let code = req.query.code || null;
   let state = req.query.state || null;
   let storedState = req.cookies ? req.cookies[stateKey] : null;
-  //console.log('req object' , req.email);
-  //console.log('res object' , res.email);
+  
   if (state === null || state !== storedState) {
     res.redirect('/#' +
       querystring.stringify({
@@ -117,20 +116,18 @@ app.get('/callback', async function(req, res) {
               json: true
             };
 
-            // use the access token to access the Spotify Web API
-            let userId = ''; 
-            request.get(options, function(error, response, body) {
-              //console.log(body); // GOOD DATA HERE 
-              const userId = getOrInsertUser(body.email, body.display_name);
-              console.log(userId);    
-            });
-    
+            const profile = await getProfileData(access_token);
+            
+            const UserId = await getOrInsertUser(profile.email, profile.display_name);
+
+            console.log(UserId); 
+
         // we can also pass the token to the browser to make requests from there
         res.redirect('/#' +
           querystring.stringify({
             access_token: access_token,
-            refresh_token: refresh_token
-           // userId: userId
+            refresh_token: refresh_token,
+            userId: UserId
           }));
       } else {
         res.redirect('/#' +
