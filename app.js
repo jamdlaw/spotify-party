@@ -111,13 +111,20 @@ app.get('/callback', async function(req, res) {
            let access_token = body.access_token,
             refresh_token = body.refresh_token;
 
-        //TODO trying to get the email and profile name so I can create a user 
-        //const spotifyUserProfile = await getProfileData(access_token);
-        //console.log(spotifyUserProfile);
-        //now that we are logged into spotify we can get or make userid
-        //const userId = await getOrInsertUserFromProfile(spotifyUserProfile.email , spotifyUserProfile.display_name);
-        //console.log(userId);
+            let options = {
+              url: 'https://api.spotify.com/v1/me',
+              headers: { 'Authorization': 'Bearer ' + access_token },
+              json: true
+            };
 
+            // use the access token to access the Spotify Web API
+            let userId = ''; 
+            request.get(options, function(error, response, body) {
+              //console.log(body); // GOOD DATA HERE 
+              const userId = getOrInsertUser(body.email, body.display_name);
+              console.log(userId);    
+            });
+    
         // we can also pass the token to the browser to make requests from there
         res.redirect('/#' +
           querystring.stringify({
@@ -203,11 +210,17 @@ app.post('/addTracksToPlaylist', function(req, res){
   addTracksToPlaylist(access_token,playlistId);
   
   res.send('tracks added');
-})
+});
 
 app.get('/testUserId', async function(req, res){
    results = await getOrInsertUser('test7@test.com', 'earl lawrnece'); 
    res.send(results);
-})
+});
+
+app.get('/testgetUserProfile', async function(req,res){
+  const result = getProfileData(req.access_token);
+  res.send(result);
+});
+
 console.log('Listening on 8888');
 app.listen(8888);
