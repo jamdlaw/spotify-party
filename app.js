@@ -114,7 +114,7 @@ app.get('/callback', async function(req, res) {
         
         const UserId = await getOrInsertUser(profile.email, profile.display_name);
 
-        // send to browser
+        // this is a comment
         res.redirect('/#' +
           querystring.stringify({
             access_token: access_token,
