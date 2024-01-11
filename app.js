@@ -20,9 +20,9 @@ const getProfileData = require('./getProfileData');
 dotenv.config();
 const app = express();
 
-const client_id = process.env.client_id; // your clientId
-const client_secret = process.env.client_secret; // Your secret
-const redirect_uri = 'http://localhost:8888/callback'; // Your redirect uri
+const client_id = process.env.CLIENT_ID; // Spotify clientId
+const client_secret = process.env.CLIENT_SECRET; // Spotify secret
+const redirect_uri = 'http://localhost:8888/callback'; // Spotify redirect uri
 
 const generateRandomString = (length) => {
   return crypto
