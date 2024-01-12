@@ -60,7 +60,7 @@ app.get('/login', function(req, res) {
   const state = generateRandomString(16);
   res.cookie(stateKey, state);
 
-  // permission list
+  // spotify permission list
   const scope = 'user-read-private user-read-email user-read-recently-played playlist-modify-public playlist-modify-private';
   res.redirect('https://accounts.spotify.com/authorize?' +
     querystring.stringify({
