@@ -50,7 +50,7 @@ app.post('/createParty', async function(req,res){
   
   const {userid, partyname } = req.body;
   const partyId = await createParty(userid, partyname);
-  console.log('from app.js ' + partyId);
+  
   res.send(JSON.stringify({partyId: partyId}));  
   
 });
