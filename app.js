@@ -74,9 +74,6 @@ app.get('/login', function(req, res) {
 
 app.get('/callback', async function(req, res) {
 
-  // your application requests refresh and access tokens
-  // after checking the state parameter
-
   let code = req.query.code || null;
   let state = req.query.state || null;
   let storedState = req.cookies ? req.cookies[stateKey] : null;
