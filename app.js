@@ -41,8 +41,8 @@ app.use(express.static(__dirname + '/public'))
    .use(cookieParser());
 
 app.post('/createUser', async function(req,res){
-  const {name, email} = req.body;
-  results = await createUser(name, email);
+  const {email, name} = req.body;
+  results = await createUser(email, name);
   console.log('app.js ' + results);
   res.send(results);
 });
