@@ -99,7 +99,6 @@ app.get('/callback', async function(req, res) {
       json: true
     };
 
-    
     request.post(authOptions,  async function(error, response, body) {
       if (!error && response.statusCode === 200) {
 
@@ -110,7 +109,6 @@ app.get('/callback', async function(req, res) {
         
         const UserId = await getOrInsertUser(profile.email, profile.display_name);
 
-        // this is a test comment!!
         res.redirect('/#' +
           querystring.stringify({
             access_token: access_token,
