@@ -11,7 +11,7 @@ if(userId){
 }
 //no
 //insert new user
-userId = await createUser(name , email);
+userId = await createUser(email, name );
 
 return {"id" : userId.insertId}; 
 }

@@ -1,10 +1,10 @@
 const mysql = require('./utils/mysqlUtils');
 
-    const createUser = async (name , email) =>{
-        const sql = "INSERT INTO users (name , email) VALUES(?, ?)";
+    const createUser = async (email, name) =>{
+        const sql = "INSERT INTO users (email, name) VALUES(?, ?)";
         let results = '';
         try{  
-            results = await mysql.query(sql, [name , email]);
+            results = await mysql.query(sql, [email, name]);
         } catch(error){
             console.log(error);
         }
