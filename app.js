@@ -43,8 +43,7 @@ app.use(express.static(__dirname + '/public'))
 app.post('/createUser', async function(req,res){
   const {email, name} = req.body;
   results = await createUser(email, name);
-  console.log('app.js ' + results);
-  res.send(results);
+  res.send(JSON.stringify({id: results.insertId}));
 });
 
 app.post('/createParty', async function(req,res){
