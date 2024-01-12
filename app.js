@@ -17,6 +17,7 @@ const createParty = require('./createParty');
 const getOrInsertUser = require('./getOrInsertUser');
 const getProfileData = require('./getProfileData');
 
+//TODO: add logging for errors
 dotenv.config();
 const app = express();
 
@@ -72,6 +73,7 @@ app.get('/login', function(req, res) {
     }));
 });
 
+//TODO: refactor function to make it more readable?
 app.get('/callback', async function(req, res) {
 
   let code = req.query.code || null;
@@ -155,6 +157,7 @@ app.get('/refresh_token', function(req, res) {
 
 app.get('/history', function(req, res){
   let access_token = req.query.access_token;
+
   getRecentlyPlayed(access_token)
   .then(data => {
     insertTrackData(data);   
@@ -171,22 +174,25 @@ app.get('/history', function(req, res){
 
 app.get('/getRecommendations', async function(req, res){
   let access_token = req.query.access_token;
+
   data = await getRecommendations(access_token);
   data.forEach(track => {
     //console.log(track.id, track.name, track.external_urls);
     sql = "INSERT INTO recommended_tracks (track_id ,name , external_urls,uris) VALUES (?,?,?,?)";
     mysql.query(sql, [track.id, track.name, track.external_urls.spotify,track.uri]);
   });
+
   res.send(data);
 });
 
 app.post('/createPlaylist', function(req, res){
   let access_token = req.body.access_token;
+
   createPlaylist(access_token);
   
   res.send('create playlist');
 });
-
+//TODO: playlist ID is hardcoded!!!
 app.post('/addTracksToPlaylist', function(req, res){
   let access_token = req.body.access_token;
   const playlistId = '2b0H9RTN1u342prSOmG8AG'; // hardcode playlist id for write now while testing
