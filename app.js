@@ -186,16 +186,20 @@ app.get('/getRecommendations', async function(req, res){
 });
 
 app.post('/createPlaylist', async function(req, res){
+  
   let access_token = req.body.access_token;
 
   const playListId = await createPlaylist(access_token);
-  console.log(playListId);
+  
   res.send(JSON.stringify(playListId));
 });
-//TODO: playlist ID is hardcoded!!!
+
+
 app.post('/addTracksToPlaylist', function(req, res){
-  let access_token = req.body.access_token;
-  const playlistId = '2b0H9RTN1u342prSOmG8AG'; // hardcode playlist id for write now while testing
+  
+  const access_token = req.body.access_token;
+  const playlistId = req.body.playListId; 
+
   addTracksToPlaylist(access_token,playlistId);
   
   res.send('tracks added');
