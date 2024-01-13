@@ -215,7 +215,7 @@
   
      //add songs to playlist 
    document.getElementById("add-songs-playlist").addEventListener("click",function(event){
-        //console.log(localStorage.getItem("access_token"));
+        
         fetch('/addTracksToPlaylist', {
           method: 'POST',
           headers: {
