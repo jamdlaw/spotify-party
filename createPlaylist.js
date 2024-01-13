@@ -2,7 +2,7 @@ const addTracksToPlaylist = require('./addTracksToPlaylist');
 const mysql = require('./utils/mysqlUtils');
 
 
-const createPlaylist = (accessToken) => {
+const createPlaylist = (accessToken, playListName) => {
     
   userID = '31afxyqa3va5diljlxixvp53iwqi'; 
   const url = `https://api.spotify.com/v1/users/${userID}/playlists`;
@@ -17,8 +17,8 @@ const createPlaylist = (accessToken) => {
       Authorization: `Bearer ${accessToken}`,
     },
     body:JSON.stringify({
-        "name": "New Playlist",
-        "description": "New playlist description",
+        "name": playListName,
+        "description": "Play list created by spotify party",
         "public": false 
     })
   })

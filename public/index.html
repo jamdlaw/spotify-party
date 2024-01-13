@@ -200,7 +200,10 @@
           headers: {
             "Content-Type": "application/json",
           },
-          body:JSON.stringify({"access_token": localStorage.getItem("access_token")})
+          body:JSON.stringify({
+              "access_token": localStorage.getItem("access_token"),
+              "playListName": "kewl play list name"
+            })
         })
         .then(response => {
           // Handle the response as needed

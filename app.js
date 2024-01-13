@@ -187,10 +187,12 @@ app.get('/getRecommendations', async function(req, res){
 
 app.post('/createPlaylist', async function(req, res){
   
-  let access_token = req.body.access_token;
+  const access_token = req.body.access_token;
+  const playListName = req.body.playListName;
 
-  const playListId = await createPlaylist(access_token);
-  
+  const playListId = await createPlaylist(access_token, playListName);
+  console.log(playListId);
+
   res.send(JSON.stringify(playListId));
 });
 
