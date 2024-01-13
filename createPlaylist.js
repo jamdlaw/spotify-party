@@ -2,13 +2,13 @@ const addTracksToPlaylist = require('./addTracksToPlaylist');
 const mysql = require('./utils/mysqlUtils');
 
 
-const createPlaylist = async (accessToken) => {
+const createPlaylist = (accessToken) => {
     
-   userID = '31afxyqa3va5diljlxixvp53iwqi';
-   //example url: https://api.spotify.com/v1/users/{user_id}/playlists
-   const url = `https://api.spotify.com/v1/users/${userID}/playlists`;
+  userID = '31afxyqa3va5diljlxixvp53iwqi'; 
+  const url = `https://api.spotify.com/v1/users/${userID}/playlists`;
   let playlistId = '';
 
+  //return new Spotify Playlist Id
   return fetch(url, {
     method: 'POST',
     headers: {
@@ -23,11 +23,9 @@ const createPlaylist = async (accessToken) => {
     })
   })
   .then(res => res.json())
-  .then(data => playlistId = data.id)
+  .then(data => {return data.id }) 
   .catch(error => console.log(error));
 
-  
-  await addTracksToPlaylist(playlistId)
 };
 
 

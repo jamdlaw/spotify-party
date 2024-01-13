@@ -185,12 +185,12 @@ app.get('/getRecommendations', async function(req, res){
   res.send(data);
 });
 
-app.post('/createPlaylist', function(req, res){
+app.post('/createPlaylist', async function(req, res){
   let access_token = req.body.access_token;
 
-  createPlaylist(access_token);
-  
-  res.send('create playlist');
+  const playListId = await createPlaylist(access_token);
+  console.log(playListId);
+  res.send(JSON.stringify(playListId));
 });
 //TODO: playlist ID is hardcoded!!!
 app.post('/addTracksToPlaylist', function(req, res){
