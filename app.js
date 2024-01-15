@@ -23,7 +23,7 @@ const app = express();
 
 const client_id = process.env.CLIENT_ID; // Spotify clientId
 const client_secret = process.env.CLIENT_SECRET; // Spotify secret
-const redirect_uri = 'http://localhost:8888/callback'; // Spotify redirect uri
+const redirect_uri = process.env.CALLBACK_URL; // Spotify redirect uri
 
 const generateRandomString = (length) => {
   return crypto
