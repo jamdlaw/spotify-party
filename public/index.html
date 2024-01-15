@@ -19,12 +19,10 @@
   <body>
     <div class="container">
       <div id="login">
-        <h1>Join the party!</h1>
-        <form action="" name="partyform" id="partyform" method="post">
-          <input type="text" name="party_name" id="party_name">
-          <input type="submit" class="btn btn-primary" value="Create a party">
-        </form>
-        <a href="/joinParty" class="btn btn-primary">Join a party</a>
+        <div>
+            <h1> Spotify Party Demo</h1>
+            <button class="btn btn-primary" id="sign-in">Log in to Spotify</button>
+        </div>
       </div>
       <div id="loggedin">
         <div id="user-profile">
@@ -168,7 +166,12 @@
     
       //outside of jquery
 
+      //login to spotify
+      document.getElementById("sign-in").addEventListener("click", function(e){
+        console.log('howdy');
+      });
       //create party
+      /*
       document.getElementById("partyform").addEventListener("submit", function(event) {
         event.preventDefault();
         const formData = new FormData(this);
@@ -191,9 +194,9 @@
         });
         
       });
-       
-   //create playlist 
-   document.getElementById("create-playlist").addEventListener("click",function(event){
+       */
+      //create playlist 
+      document.getElementById("create-playlist").addEventListener("click",function(event){
         //console.log(localStorage.getItem("access_token"));
         fetch('/createPlaylist', {
           method: 'POST',
@@ -212,9 +215,9 @@
         .catch(error => {
       });
     });
-  
+      
      //add songs to playlist 
-   document.getElementById("add-songs-playlist").addEventListener("click",function(event){
+     document.getElementById("add-songs-playlist").addEventListener("click",function(event){
         
         fetch('/addTracksToPlaylist', {
           method: 'POST',
