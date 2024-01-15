@@ -21,7 +21,7 @@
       <div id="login">
         <div>
             <h1> Spotify Party Demo</h1>
-            <button class="btn btn-primary" id="sign-in">Log in to Spotify</button>
+            <a href="/login" class="btn btn-primary">Log in to Spotify</a>
         </div>
       </div>
       <div id="loggedin">
@@ -166,10 +166,6 @@
     
       //outside of jquery
 
-      //login to spotify
-      document.getElementById("sign-in").addEventListener("click", function(e){
-        console.log('howdy');
-      });
       //create party
       /*
       document.getElementById("partyform").addEventListener("submit", function(event) {
@@ -197,7 +193,7 @@
        */
       //create playlist 
       document.getElementById("create-playlist").addEventListener("click",function(event){
-        //console.log(localStorage.getItem("access_token"));
+
         fetch('/createPlaylist', {
           method: 'POST',
           headers: {
