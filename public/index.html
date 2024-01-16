@@ -183,11 +183,12 @@
       fetch('/joinParty', {
           method: 'GET'
         })
-        .then(response => {
-          // Handle the response as needed
-          console.log(response.json());
+        .then((res) => res.json())
+        .then((data) => {
+          let partyList = data.partyList;
+          console.log(partyList);
         })
-        .catch(error => {console.log(error)})
+    .catch(error => {console.log(error)})
         
     });
     
