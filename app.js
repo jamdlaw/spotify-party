@@ -16,6 +16,7 @@ const createUser = require('./createUser');
 const createParty = require('./createParty');
 const getOrInsertUser = require('./getOrInsertUser');
 const getProfileData = require('./getProfileData');
+const getPartyList = require('./getPartyList');
 
 //TODO: add logging for errors
 dotenv.config();
@@ -56,6 +57,11 @@ app.post('/createParty', async function(req,res){
   
 });
 
+app.get('/joinParty', async function(req, res){
+  results = await getPartyList(); 
+  res.send(results);
+});
+
 app.get('/login', function(req, res) {
 
   const state = generateRandomString(16);
@@ -73,7 +79,7 @@ app.get('/login', function(req, res) {
     }));
 });
 
-//TODO: refactor function to make it more readable?
+
 app.get('/callback', async function(req, res) {
 
   let code = req.query.code || null;
@@ -195,7 +201,6 @@ app.post('/createPlaylist', async function(req, res){
 
   res.send(JSON.stringify(playListId));
 });
-
 
 app.post('/addTracksToPlaylist', function(req, res){
   
