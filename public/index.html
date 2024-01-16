@@ -30,8 +30,11 @@
           <input type="text" name="party_name" id="party_name">
           <input type="submit" class="btn btn-primary" value="Create a party">
         </form>
-        <a href="/joinParty" class="btn btn-primary">Join a party</a>
+        <button  id="joinParty" class="btn btn-primary">Join a party`</button>
+        <!-- join party markup -->
+        <div id="partyList">
 
+        </div>
         <hr>
         <button class="btn btn-default" id="obtain-new-token">Obtain new token using the refresh token</button>
         <button class="btn btn-default" id="get-listen-history">Get Listen History</button>
@@ -174,6 +177,20 @@
       });
     });
   
+    //join exiting party
+    document.getElementById("joinParty").addEventListener("click", function(e){
+      
+      fetch('/joinParty', {
+          method: 'GET'
+        })
+        .then(response => {
+          // Handle the response as needed
+          console.log(response);
+        })
+        .catch(error => {console.log(error)})
+        
+    });
+    
     // Function to display album information
   function displayAlbumInfo(album) {
       const albumInfoDiv = document.getElementById('albumInfo');
