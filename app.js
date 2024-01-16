@@ -22,6 +22,8 @@ const getPartyList = require('./getPartyList');
 dotenv.config();
 const app = express();
 
+app.use(express.json({ limit: '50mb' }));
+
 const client_id = process.env.CLIENT_ID; // Spotify clientId
 const client_secret = process.env.CLIENT_SECRET; // Spotify secret
 const redirect_uri = process.env.CALLBACK_URL; // Spotify redirect uri
@@ -59,7 +61,7 @@ app.post('/createParty', async function(req,res){
 
 app.get('/joinParty', async function(req, res){
   results = await getPartyList(); 
-  res.json(results);
+  res.send({ partyList: results });
 });
 
 app.get('/login', function(req, res) {
