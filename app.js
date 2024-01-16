@@ -185,7 +185,6 @@ app.get('/getRecommendations', async function(req, res){
 
   data = await getRecommendations(access_token);
   data.forEach(track => {
-    //console.log(track.id, track.name, track.external_urls);
     sql = "INSERT INTO recommended_tracks (track_id ,name , external_urls,uris) VALUES (?,?,?,?)";
     mysql.query(sql, [track.id, track.name, track.external_urls.spotify,track.uri]);
   });
