@@ -59,7 +59,7 @@ app.post('/createParty', async function(req,res){
 
 app.get('/joinParty', async function(req, res){
   results = await getPartyList(); 
-  res.send(results);
+  res.json(results);
 });
 
 app.get('/login', function(req, res) {
