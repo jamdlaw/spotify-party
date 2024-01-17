@@ -17,6 +17,7 @@ const createParty = require('./createParty');
 const getOrInsertUser = require('./getOrInsertUser');
 const getProfileData = require('./getProfileData');
 const getPartyList = require('./getPartyList');
+const joinGuestToParty = require('./joinGuestToParty');
 
 //TODO: add logging for errors
 dotenv.config();
@@ -64,8 +65,11 @@ app.get('/joinParty', async function(req, res){
   res.send({ partyList: results });
 });
 
-app.post('/JoinGuestToParty', function(req, res){
-  console.log(req.body);
+app.post('/joinGuestToParty', function(req, res){
+  //console.log(req.body);
+  const {userId, partyId} = req.body;
+  results = joinGuestToParty(userId, partyId);
+  
 });
 
 app.get('/login', function(req, res) {
