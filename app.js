@@ -64,6 +64,10 @@ app.get('/joinParty', async function(req, res){
   res.send({ partyList: results });
 });
 
+app.post('/JoinGuestToParty', function(req, res){
+  console.log(req.body);
+});
+
 app.get('/login', function(req, res) {
 
   const state = generateRandomString(16);
