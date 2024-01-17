@@ -250,9 +250,9 @@
 
         // Loop through the sample data and create rows
         partyList.forEach(function(row) {
-            var tr = document.createElement('tr');
-            var tdId = document.createElement('td');
-            var tdPartyName = document.createElement('td');
+            let tr = document.createElement('tr');
+            let tdId = document.createElement('td');
+            let tdPartyName = document.createElement('td');
 
             tdId.textContent = row.id;
             tdPartyName.textContent = row.party_name;
