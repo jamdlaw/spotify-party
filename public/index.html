@@ -13,6 +13,17 @@
         white-space: nowrap;
         width: 500px;
       }
+      
+      table {
+          border-collapse: collapse;
+          width: 50%;
+          margin: 20px;
+      }
+      th, td {
+          border: 1px solid black;
+          padding: 8px;
+          text-align: left;
+      }
     </style>
   </head>
 
@@ -32,9 +43,17 @@
         </form>
         <button  id="joinParty" class="btn btn-primary">Join a party`</button>
         <!-- join party markup -->
-        <div id="partyList">
-
-        </div>
+        <table id="partyTable">
+          <thead>
+              <tr>
+                  <th>ID</th>
+                  <th>Party Name</th>
+              </tr>
+          </thead>
+          <tbody>
+              <!-- Table body will be populated dynamically using JavaScript -->
+          </tbody>
+      </table>
         <hr>
         <button class="btn btn-default" id="obtain-new-token">Obtain new token using the refresh token</button>
         <button class="btn btn-default" id="get-listen-history">Get Listen History</button>
@@ -186,14 +205,14 @@
         .then((res) => res.json())
         .then((data) => {
           let partyList = data.partyList;
-          console.log(partyList);
+          displayPartyData(partyList);
         })
     .catch(error => {console.log(error)})
         
     });
     
     // Function to display album information
-  function displayAlbumInfo(album) {
+    function displayAlbumInfo(album) {
       const albumInfoDiv = document.getElementById('albumInfo');
 
       // Create elements to display album data
@@ -222,6 +241,55 @@
       albumInfoDiv.appendChild(artistLink);
   }
 
+    // Function to display party list data table
+    function displayPartyData(partyList) {
+        var tableBody = document.querySelector('#partyTable tbody');
+
+        // Clear existing rows
+        tableBody.innerHTML = '';
+
+        // Loop through the sample data and create rows
+        partyList.forEach(function(row) {
+            var tr = document.createElement('tr');
+            var tdId = document.createElement('td');
+            var tdPartyName = document.createElement('td');
+
+            tdId.textContent = row.id;
+            tdPartyName.textContent = row.party_name;
+
+            tr.appendChild(tdId);
+            tr.appendChild(tdPartyName);
+
+              // Add a click event listener to each row
+            tr.addEventListener('click', function() {
+                // Call the fetch function with the row ID
+                addGuestToParty(row.id);
+            });
+
+            tableBody.appendChild(tr);
+
+        });
+      }  
+    
+     // Function to fetch data from the server based on ID
+     function addGuestToParty(id) {
+       console.log(id);
+      /*
+        // Replace 'your_endpoint_url' with your actual server endpoint URL
+        var endpointUrl = 'your_endpoint_url/' + id;
+
+        // Fetch data from the server
+        fetch(endpointUrl)
+            .then(response => response.json())
+            .then(data => {
+                // Handle the fetched data as needed
+                console.log('Data fetched:', data);
+            })
+            .catch(error => {
+                console.error('Error fetching data:', error);
+            });
+      */
+    }      
     </script>
   </body>
 </html>
