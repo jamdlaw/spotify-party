@@ -84,52 +84,69 @@
           return hashParams;
         }
       
+        //Parse cookie data, possible replacement for getHashParams()
+        function getCookie(name) {
+          const cookies = document.cookie.split('; ');
+          for (const cookie of cookies) {
+            const [cookieName, cookieValue] = cookie.split('=');
+            if (cookieName === name) {
+              return cookieValue;
+            }
+          }
+          return null;
+        }
+
         const localStorage = window.localStorage;
   
         let params = getHashParams();
 
+        // Example of how to use the function to get values
+        const accessToken = getCookie('access_token');
+        const refreshToken = getCookie('refresh_token');
+        const userId = getCookie('userId');
+        
+        /*
         let access_token = params.access_token,
             refresh_token = params.refresh_token,
             error = params.error;
+        */
+
+        localStorage.setItem('access_token', accessToken);
+        localStorage.setItem('refresh_token', refreshToken);
+        localStorage.setItem('userId', userId);
+
         
-        localStorage.setItem('access_token', params.access_token);
-        localStorage.setItem('refresh_token', params.refresh_token);
-        localStorage.setItem('userId', params.userId);
+        if (accessToken) {
+          $('#login').hide();
+          $('#loggedin').show();
+          }
 
-        if (error) {
-          alert('There was an error during the authentication');
-        } else {
-          if (access_token) {
-            $('#login').hide();
-            $('#loggedin').show();
+        //get-recommendations
+        document.getElementById('get-recommendations').addEventListener('click', function(){
+          $.ajax({
+            url: '/getRecommendations',
+            data: {
+              'access_token': localStorage.getItem('access_token')
             }
-
-          //get-recommendations
-          document.getElementById('get-recommendations').addEventListener('click', function(){
-            $.ajax({
-              url: '/getRecommendations',
-              data: {
-                'access_token': localStorage.getItem('access_token')
-              }
-            }).done(function(data) {
-              data.forEach(element => {
-                displayAlbumInfo(element);       
-              });
-            });  
-          }, false);
-          
-          //get listen history
-          document.getElementById('get-listen-history').addEventListener('click', function(){
-            $.ajax({
-              url: '/history',
-              data: {
-                'access_token': localStorage.getItem('access_token')
-              }
-            }).done(function(data) {
-              console.log(data);
-            });  
-          }, false);
-        }
+          }).done(function(data) {
+            data.forEach(element => {
+              displayAlbumInfo(element);       
+            });
+          });  
+        }, false);
+        
+        //get listen history
+        document.getElementById('get-listen-history').addEventListener('click', function(){
+          $.ajax({
+            url: '/history',
+            data: {
+              'access_token': localStorage.getItem('access_token')
+            }
+          }).done(function(data) {
+            console.log(data);
+          });  
+        }, false);
+        
       })();
        /* OUTSIDE OF JQUERY */ 
 

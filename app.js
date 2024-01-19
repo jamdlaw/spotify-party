@@ -127,12 +127,18 @@ app.get('/callback', async function(req, res) {
         
         const UserId = await getOrInsertUser(profile.email, profile.display_name);
 
-        res.redirect('/#' +
-          querystring.stringify({
-            access_token: access_token,
-            refresh_token: refresh_token,
-            userId: UserId.id
-          }));
+        const responseData = {
+          access_token: access_token,
+          refresh_token: refresh_token,
+          userId: UserId.id
+        };
+        
+        // Set cookies with the data
+        res.cookie('access_token', access_token);
+        res.cookie('refresh_token', refresh_token);
+        res.cookie('userId', UserId.id);
+        
+        res.redirect('/#');
       } else {
         res.redirect('/#' +
           querystring.stringify({
