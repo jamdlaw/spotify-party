@@ -9,7 +9,8 @@ function App() {
   return (
     <>
       <div>
-        some text
+        <h1> Spotify Party Demo</h1>
+        <a href="/login" class="btn btn-primary">Log in to Spotify</a>
       </div> 
     </>
   )
