@@ -45,33 +45,6 @@ app.use(express.static(__dirname + '/public'))
    .use(cors())
    .use(cookieParser());
 
-app.post('/createUser', async function(req,res){
-  const {email, name} = req.body;
-  results = await createUser(email, name);
-  res.send(JSON.stringify({id: results.insertId}));
-});
-
-app.post('/createParty', async function(req,res){
-  
-  const {userid, partyname } = req.body;
-  const partyId = await createParty(userid, partyname);
-  
-  res.send(JSON.stringify({partyId: partyId}));  
-  
-});
-
-app.get('/joinParty', async function(req, res){
-  results = await getPartyList(); 
-  res.send({ partyList: results });
-});
-
-app.post('/joinGuestToParty', function(req, res){
-  //console.log(req.body);
-  const {userId, partyId} = req.body;
-  results = joinGuestToParty(userId, partyId);
-  
-});
-
 app.get('/login', function(req, res) {
 
   const state = generateRandomString(16);
@@ -88,7 +61,6 @@ app.get('/login', function(req, res) {
       state: state
     }));
 });
-
 
 app.get('/callback', async function(req, res) {
 
@@ -175,6 +147,33 @@ app.get('/refresh_token', function(req, res) {
       });
     }
   });
+});
+
+app.post('/createUser', async function(req,res){
+  const {email, name} = req.body;
+  results = await createUser(email, name);
+  res.send(JSON.stringify({id: results.insertId}));
+});
+
+app.post('/createParty', async function(req,res){
+  
+  const {userid, partyname } = req.body;
+  const partyId = await createParty(userid, partyname);
+  
+  res.send(JSON.stringify({partyId: partyId}));  
+  
+});
+
+app.get('/joinParty', async function(req, res){
+  results = await getPartyList(); 
+  res.send({ partyList: results });
+});
+
+app.post('/joinGuestToParty', function(req, res){
+  //console.log(req.body);
+  const {userId, partyId} = req.body;
+  results = joinGuestToParty(userId, partyId);
+  
 });
 
 app.get('/history', function(req, res){
