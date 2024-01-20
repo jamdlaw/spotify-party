@@ -138,7 +138,7 @@ app.get('/callback', async function(req, res) {
         res.cookie('refresh_token', refresh_token);
         res.cookie('userId', UserId.id);
         
-        res.redirect('/#');
+        res.redirect(process.env.REACT_APP_URL);
       } else {
         res.redirect('/#' +
           querystring.stringify({
