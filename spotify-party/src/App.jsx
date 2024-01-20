@@ -10,7 +10,7 @@ function App() {
     <>
       <div>
         <h1> Spotify Party Demo</h1>
-        <a href="localhost:8888/login" className="btn btn-primary">Log in to Spotify</a>
+        <a href="http://localhost:8888/login" className="btn btn-primary">Log in to Spotify</a>
       </div> 
     </>
   )
