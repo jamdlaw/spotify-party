@@ -228,7 +228,7 @@ app.post('/addTracksToPlaylist', function(req, res){
 
 app.get('/testUserId', async function(req, res){
    results = await getOrInsertUser('test7@test.com', 'earl lawrnece'); 
-   res.send(results);
+   res.send({user} = results);
 });
 
 app.get('/testgetUserProfile', async function(req,res){
