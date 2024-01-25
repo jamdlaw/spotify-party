@@ -6,13 +6,18 @@ function App() {
   
   //<a href="http://localhost:8888/login" className="btn btn-primary">Log in to Spotify</a>
 
-  const [alertVisable, setAlertVisablilty ] = useState(false);
+  const Login = () => {
+    fetch('http://localhost:8888/testUserId')
+  .then(response => response.json())
+  .then(data => console.log(data))
+  .catch(error => console.error(error));
+  }
 
   return (
     <>
       <div>
         <h1> Spotify Party Demo</h1>      
-        <Button color='primary' onClick={() => setAlertVisablilty(true)}> My text </Button>
+        <Button color='primary' onClick={() => Login()}> My text </Button>
       </div> 
     </>
   )
