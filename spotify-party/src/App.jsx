@@ -17,7 +17,7 @@ function App() {
     <>
       <div>
         <h1> Spotify Party Demo</h1>      
-        <Button color='primary' onClick={() => Login()}> My text </Button>
+        <Button color='primary' onClick={() => Login()}> Log In </Button>
       </div> 
     </>
   )
