@@ -1,13 +1,16 @@
 import { useState } from 'react'
 import './App.css'
 import Login from './components/Login'
-import Button from './components/Button'
+import CreateOrJoinParty from './components/CreateOrJoinParty'
 
 function App() {
   
  
   return (
+    <>
     <Login />
+    <CreateOrJoinParty />
+    </>
   )
 }
 
