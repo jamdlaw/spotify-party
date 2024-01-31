@@ -3,7 +3,7 @@ import React from 'react'
 function PartyForm() {
   return (
     <form>
-    <label>Enter your name:
+    <label>Party Name:
       <input type="text" />
     </label>
   </form>
