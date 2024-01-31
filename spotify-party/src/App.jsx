@@ -4,8 +4,6 @@ import Button from './components/Button'
 
 function App() {
   
-  //<a href="http://localhost:8888/login" className="btn btn-primary">Log in to Spotify</a>
-
   const Login = () => {
     fetch('http://localhost:8888/testUserId')
   .then(response => response.json())
