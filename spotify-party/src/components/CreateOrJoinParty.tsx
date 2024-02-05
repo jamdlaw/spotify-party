@@ -3,11 +3,11 @@ import Button from './Button'
 
 function CreateOrJoinParty(props) {
     const createParty = () => {
-            console.log('create party ');
+            console.log('create party');
         }
    
     const joinParty = () => {
-            console.log('join party ');
+            console.log('join party');
         }    
 
   return (
