@@ -10,8 +10,8 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-      <Route path="/" element={Login}></Route>
-      <Route path="/CreateOrJoinParty" element={CreateOrJoinParty}></Route>
+      <Route path="/" element={<Login/>}></Route>
+      <Route path="/CreateOrJoinParty" element={<CreateOrJoinParty/>}></Route>
       </Routes>  
     </BrowserRouter>
   )
