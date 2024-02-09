@@ -1,11 +1,15 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Button from './Button'
+import CreateParty from '../CreateParty';
 
 function CreateOrJoinParty(props) {
+
+    const [showCreateParty, setshowCreateParty] = useState(false);
+  
     const createParty = () => {
-            console.log('create party');
-        }
-   
+      setshowCreateParty(true);
+    }
+
     const joinParty = () => {
             console.log('join party');
         }    
@@ -14,6 +18,7 @@ function CreateOrJoinParty(props) {
     <>
         <h3>Create of join a party</h3>
         <Button onClick={createParty}>Create Party</Button> | <Button onClick={joinParty}>Join Party</Button>
+        {showCreateParty && <CreateParty />}
     </>
   )
 }
