@@ -16,7 +16,7 @@ const CreateParty = () => {
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({"partyname":party_name, "userid": localStorage.getItem('userId')}) //hardcode userid for now
+          body: JSON.stringify({"partyname":party_name, "userid": localStorage.getItem('userId')})
         })
         .then(response => {
           // Handle the response as needed
