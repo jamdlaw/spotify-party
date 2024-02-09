@@ -11,8 +11,9 @@ function CreateOrJoinParty(props) {
     }
 
     const joinParty = () => {
-            console.log('join party');
-        }    
+       setshowCreateParty(false);
+       
+    }    
 
   return (
     <>
