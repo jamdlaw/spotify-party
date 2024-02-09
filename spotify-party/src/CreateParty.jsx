@@ -1,5 +1,6 @@
 import React from 'react'
 import { useState } from 'react';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const CreateParty = () => {
   
@@ -12,14 +13,16 @@ const CreateParty = () => {
   
     return (
       <form onSubmit={handleSubmit}>
-        <label>Enter party name:
+        <label for='partyName'>Enter party name: </label>
           <input 
+            id="partyName"
+            className="form-control"
             type="text" 
             value={name}
             onChange={(e) => setName(e.target.value)}
           />
-        </label>
-        <input type="submit" />
+        
+        <input type="submit" className="btn btn-primary" />
       </form>
     )
   }
