@@ -4,11 +4,29 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 const CreateParty = () => {
   
-    const [name, setName] = useState("");
+    const [partyName, setName] = useState("");
   
     const handleSubmit = (event) => {
       event.preventDefault();
-      alert(`The name you entered was: ${name}`)
+      
+      let party_name = partyName; 
+
+        fetch('http://localhost:8888/createParty', {
+          method: 'POST',
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({"partyname":party_name, "userid": localStorage.getItem('userId')}) //hardcode userid for now
+        })
+        .then(response => {
+          // Handle the response as needed
+          console.log('Party created!', response);
+        })
+        .catch(error => {
+          // Handle errors
+          console.error('Error creating party:', error);
+        });
+        
     }
   
     return (
@@ -18,7 +36,7 @@ const CreateParty = () => {
             id="partyName"
             className="form-control"
             type="text" 
-            value={name}
+            value={partyName}
             onChange={(e) => setName(e.target.value)}
           />
         
