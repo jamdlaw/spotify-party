@@ -4,7 +4,7 @@ import Button from './Button';
 function Login() {
   
     const Login = () => {
-        fetch('http://localhost:8888/testUserId')
+        fetch('http://localhost:8888/login')
         .then(response => response.json())
         .then(data => console.log(data))
         .catch(error => console.error(error));

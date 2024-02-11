@@ -3,8 +3,8 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import './App.css'
 import Login from './components/Login'
 import CreateOrJoinParty from './components/CreateOrJoinParty'
-import CreateParty from './CreateParty'
-import Footer from './Footer';
+import CreateParty from './components/CreateParty'
+import Footer from './components/Footer';
 
 function App() {
   

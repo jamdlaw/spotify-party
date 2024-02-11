@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import Button from './Button'
-import CreateParty from '../CreateParty';
-import JoinParty from '../JoinParty';
+import CreateParty from './CreateParty';
+import JoinParty from './JoinParty';
 
 function CreateOrJoinParty(props) {
 
