@@ -21,7 +21,7 @@ function CreateOrJoinParty(props) {
 
   return (
     <>
-        <h3>Create of join a party</h3>
+        <h3>Create or Join a Party</h3>
         <Button onClick={createParty}>Create Party</Button> | <Button onClick={joinParty}>Join Party</Button>
         {showCreateParty && <CreateParty />}
         {showJoinParty && <JoinParty />}
