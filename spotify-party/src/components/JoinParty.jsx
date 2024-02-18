@@ -2,7 +2,9 @@ import React from 'react'
 
 const JoinParty = () => {
   return (
-    <div>JoinParty</div>
+    <>
+      <h3>JoinParty</h3>
+    </>
   )
 }
 
