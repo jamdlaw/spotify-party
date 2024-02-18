@@ -170,10 +170,8 @@ app.get('/joinParty', async function(req, res){
 });
 
 app.post('/joinGuestToParty', function(req, res){
-  //console.log(req.body);
   const {userId, partyId} = req.body;
   results = joinGuestToParty(userId, partyId);
-  
 });
 
 app.get('/history', function(req, res){
