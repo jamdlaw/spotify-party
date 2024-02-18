@@ -4,9 +4,9 @@ import 'bootstrap/dist/css/bootstrap.min.css'; // Ensure Bootstrap is imported
 
 const ClickableList = ({ parties }) => {
   // Function to handle click events on list items
-  const handleClick = (party) => {
+  const handleClick = async (party) => {
   try{
-    fetch('http://localhost:8888/joinGuestToParty', {
+    const response = await fetch('http://localhost:8888/joinGuestToParty', {
         method: 'POST',
         headers: {
             accept: 'application.json',
@@ -14,6 +14,14 @@ const ClickableList = ({ parties }) => {
         },
         body: JSON.stringify({"userId":20, "partyId":party.id})
     });
+
+    if (!response.ok) {
+      throw new Error(`Error: ${response.statusText}`);
+    }
+
+    const responseData = await response.json(); 
+    console.log(responseData); 
+
   } catch(error){
     console.error('Failed to send data:', error);
   }
