@@ -1,32 +1,31 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react';
+import ClickableList from './ClickableList'; // Assuming ClickableList is saved in ClickableList.js
 
-const JoinParty = async () => {
-  const partyList = await fetch('http://localhost:8888/joinParty');
+const JoinParty = () => {
+  const [parties, setParties] = useState([]);
 
-   // Function to handle click events on list items
-   const handleClick = (party) => {
-    alert(`Clicked on party: ${party.party_name || 'No name'}`);
-  };
+  useEffect(() => {
+    // Function to fetch data
+    const fetchData = async () => {
+      try {
+        // Replace 'YOUR_API_ENDPOINT' with the actual URL to fetch data from
+        const response = await fetch('YOUR_API_ENDPOINT');
+        const data = await response.json();
+        setParties(data); // Update state with fetched data
+      } catch (error) {
+        console.error('Error fetching data:', error);
+        // Handle error cases or set default data if necessary
+      }
+    };
 
+    fetchData(); // Call the fetch function
+  }, []); // Empty dependency array means this effect runs once on mount
 
   return (
-    <>
-      <h3>JoinParty</h3>
-      <div className="container mt-3">
-      <ul className="list-group">
-        {partyList.map((party) => (
-          <li
-            key={party.id}
-            className="list-group-item list-group-item-action"
-            onClick={() => handleClick(party)}
-          >
-            {party.party_name || 'No name'} {/* Display 'No name' if party_name is null */}
-          </li>
-        ))}
-      </ul>
+    <div>
+      <ClickableList parties={parties} />
     </div>
-    </>
-  )
-}
+  );
+};
 
-export default JoinParty
+export default JoinParty;
