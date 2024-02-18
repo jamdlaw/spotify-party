@@ -169,9 +169,10 @@ app.get('/joinParty', async function(req, res){
   res.send({ partyList: results });
 });
 
-app.post('/joinGuestToParty', function(req, res){
+app.post('/joinGuestToParty', async function(req, res){
   const {userId, partyId} = req.body;
-  results = joinGuestToParty(userId, partyId);
+  results = await joinGuestToParty(userId, partyId);
+  res.json(results);
 });
 
 app.get('/history', function(req, res){
