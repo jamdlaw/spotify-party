@@ -6,11 +6,12 @@ const ClickableList = ({ parties }) => {
   const handleClick = (party) => {
     alert(`Clicked on party: ${party.party_name || 'No name'}`);
   };
-
+  console.log(Array.isArray(parties));
+  
   return (
     <div className="container mt-3">
       <ul className="list-group">
-        {parties.map((party) => (
+        {Array.isArray(parties) && parties.map((party) => (
           <li
             key={party.id}
             className="list-group-item list-group-item-action"

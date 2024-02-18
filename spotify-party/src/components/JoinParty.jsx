@@ -9,9 +9,10 @@ const JoinParty = () => {
     const fetchData = async () => {
       try {
         // Replace 'YOUR_API_ENDPOINT' with the actual URL to fetch data from
-        const response = await fetch('YOUR_API_ENDPOINT');
+        const response = await fetch('http://localhost:8888/joinParty');
         const data = await response.json();
-        setParties(data); // Update state with fetched data
+        //console.log(data.partyList, typeof []);
+        setParties(data.partyList); // Update state with fetched data
       } catch (error) {
         console.error('Error fetching data:', error);
         // Handle error cases or set default data if necessary
