@@ -7,13 +7,12 @@ const ClickableList = ({ parties }) => {
   const handleClick = (party) => {
     //alert(`Clicked on party id: ${party.id || 'No name'}`);
     fetch('http://localhost:8888/joinGuestToParty', {
-        Method: 'POST',
-        Headers: {
-            Accept: 'application.json',
+        method: 'POST',
+        headers: {
+            accept: 'application.json',
             'Content-Type': 'application/json'
         },
-        Body: JSON.stringify({"userId":20, "partyId":party.id}),
-        Cache: 'default'
+        body: JSON.stringify({"userId":20, "partyId":party.id})
     });
   };
   
