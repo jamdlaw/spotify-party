@@ -1,12 +1,21 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css'; // Ensure Bootstrap is imported
 
+
 const ClickableList = ({ parties }) => {
   // Function to handle click events on list items
   const handleClick = (party) => {
-    alert(`Clicked on party: ${party.party_name || 'No name'}`);
+    //alert(`Clicked on party id: ${party.id || 'No name'}`);
+    fetch('http://localhost:8888/joinGuestToParty', {
+        Method: 'POST',
+        Headers: {
+            Accept: 'application.json',
+            'Content-Type': 'application/json'
+        },
+        Body: JSON.stringify({"userId":20, "partyId":party.id}),
+        Cache: 'default'
+    });
   };
-  console.log(Array.isArray(parties));
   
   return (
     <div className="container mt-3">
