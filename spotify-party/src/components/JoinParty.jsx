@@ -11,10 +11,10 @@ const JoinParty = () => {
         const response = await fetch('http://localhost:8888/joinParty');
         const data = await response.json();
         
-        setParties(data.partyList); // Update state with fetched data
+        setParties(data.partyList); 
       } catch (error) {
         console.error('Error fetching data:', error);
-        // Handle error cases or set default data if necessary
+        
       }
     };
 
