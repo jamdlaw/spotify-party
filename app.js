@@ -18,6 +18,7 @@ const getOrInsertUser = require('./getOrInsertUser');
 const getProfileData = require('./getProfileData');
 const getPartyList = require('./getPartyList');
 const joinGuestToParty = require('./joinGuestToParty');
+const path = require('path');
 
 //TODO: add logging for errors
 dotenv.config();
@@ -44,6 +45,11 @@ app.use(bodyParser.json());
 app.use(express.static(__dirname + '/public'))
    .use(cors())
    .use(cookieParser());
+
+app.get('/home', function(req, res){
+  res.sendFile(path.join(__dirname, '/public/index.html'));
+})
+
 
 app.get('/login', function(req, res) {
 
