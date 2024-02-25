@@ -31,7 +31,7 @@ const CreateParty = () => {
   
     return (
       <form onSubmit={handleSubmit}>
-        <label for='partyName'>Enter party name: </label>
+        <label htmlFor='partyName'>Enter party name: </label>
           <input 
             id="partyName"
             className="form-control"
