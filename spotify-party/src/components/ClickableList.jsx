@@ -1,9 +1,10 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css'; // Ensure Bootstrap is imported
-
+import Cookies from 'js-cookie';
 
 const ClickableList = ({ parties }) => {
   // Function to handle click events on list items
+  const userId = Cookies.get('userId');
   const handleClick = async (party) => {
   try{
     const response = await fetch('http://localhost:8888/joinGuestToParty', {
@@ -12,7 +13,7 @@ const ClickableList = ({ parties }) => {
             accept: 'application.json',
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify({"userId":20, "partyId":party.id})
+        body: JSON.stringify({"userId": userId, "partyId":party.id})
     });
 
     if (!response.ok) {
