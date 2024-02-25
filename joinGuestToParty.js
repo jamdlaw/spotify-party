@@ -8,7 +8,7 @@ const joinGuestToParty = async (userId, partyId, is_host = 0) => {
         console.log(error);
     }
     
-    return results.insertId;
+    return {'guestId': results.insertId};
       
 }
 

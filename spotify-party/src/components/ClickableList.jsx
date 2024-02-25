@@ -20,7 +20,7 @@ const ClickableList = ({ parties }) => {
     }
 
     const responseData = await response.json(); 
-    console.log(responseData); 
+    console.log(responseData.results.guestId); 
 
   } catch(error){
     console.error('Failed to send data:', error);
