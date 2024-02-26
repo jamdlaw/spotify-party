@@ -1,5 +1,6 @@
-import React from 'react'
+import React from 'react';
 import Cookies from 'js-cookie';
+import Button from './Button';
 
 const getListenHistory = () => {
   function getListenHistory(){
@@ -14,7 +15,7 @@ const getListenHistory = () => {
 
   return (
     <>
-    <div>getListenHistory</div>
+    <h3>ListenHistory</h3>
     <Button onClick={getListenHistory}>Create Party</Button> 
     </>   
   )
