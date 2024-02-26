@@ -16,7 +16,7 @@ const getListenHistory = () => {
   return (
     <>
     <h3>ListenHistory</h3>
-    <Button onClick={getListenHistory}>Create Party</Button> 
+    <Button onClick={getListenHistory}>Get Listen History</Button> 
     </>   
   )
 }
