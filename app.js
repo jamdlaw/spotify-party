@@ -193,7 +193,7 @@ app.get('/history', function(req, res){
       track_uri: e.track.uri.substring(e.track.uri.indexOf('track:') + 6),
     }));
 
-    res.json(arr);
+    res.send({"listenHistory":arr});
   });
   
 });
