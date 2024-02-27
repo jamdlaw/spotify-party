@@ -18,7 +18,7 @@ const JoinParty = () => {
       }
     };
 
-    fetchData(); // Call the fetch function
+    fetchData(); 
   }, []); // Empty dependency array means this effect runs once on mount
 
   return (
