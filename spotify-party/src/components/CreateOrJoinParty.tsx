@@ -3,7 +3,7 @@ import Button from './Button'
 import CreateParty from './CreateParty';
 import JoinParty from './JoinParty';
 
-function CreateOrJoinParty(props) {
+function CreateOrJoinParty() {
 
     const [showCreateParty, setshowCreateParty] = useState(false);
     const [showJoinParty, setshowJoinParty] = useState(false);
