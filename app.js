@@ -181,21 +181,22 @@ app.post('/joinGuestToParty', async function(req, res){
   res.send({results});
 });
 
-app.get('/history', function(req, res){
+app.get('/history', async function(req, res){
   let access_token = req.query.access_token;
-
-  getRecentlyPlayed(access_token)
-  .then(data => {
+  let ListenHistory = {};
+  //TODO: refactor this function to use await 
+  // set we can check if data is set fist before calling insertTrackData
+  const data = await getRecentlyPlayed(access_token);
+  if (typeof data !== 'undefined' || data !== null || data !== '') {
     insertTrackData(data);   
-    const arr = data.map(e => ({
-      played_at: e.played_at,
-      track_name: e.track.name,
-      track_uri: e.track.uri.substring(e.track.uri.indexOf('track:') + 6),
+    let ListenHistory = data.map(e => ({
+    played_at: e.played_at,
+    track_name: e.track.name,
+    track_uri: e.track.uri.substring(e.track.uri.indexOf('track:') + 6),
     }));
+    res.send({"listenHistory":ListenHistory});
 
-    res.send({"listenHistory":arr});
-  });
-  
+  }  
 });
 
 app.get('/getRecommendations', async function(req, res){
