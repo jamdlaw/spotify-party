@@ -187,7 +187,7 @@ app.get('/history', async function(req, res){
   //TODO: refactor this function to use await 
   // set we can check if data is set fist before calling insertTrackData
   const data = await getRecentlyPlayed(access_token);
-  if (typeof data !== 'undefined' || data !== null || data !== '') {
+  if (typeof data !== 'undefined') {
     insertTrackData(data);   
     let ListenHistory = data.map(e => ({
     played_at: e.played_at,
