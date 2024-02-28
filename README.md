@@ -1,16 +1,19 @@
 # spotify party
 
-to start the backend open console at root spotify-party folder:
+step 1 rename .env_sample to .env and compete the missing information
 
-    $ nodemon
-
-database create script is saved as 
+step 2 database create script is saved as 
     schema.sql
 
 run following sql to auth user on local machine:
 
     ALTER USER '<your_mysql_user>'@'localhost' IDENTIFIED WITH mysql_native_password BY '<your_password>';
 
-to start react front end native one folder level deeper
-into another spotify-party folder and run:
+step 3 start backend open console at root spotify-party folder:
+
+    $ nodemon
+
+
+step 4 cd to spotify-party inside of root folder and run:
+
     npm run dev
