@@ -1,6 +1,5 @@
 import React from 'react';
 
-// Assuming the data is passed as a prop to this component
 const ListenHistoryResults = ({ listenHistory }) => {
   const historyItems = Object.values(listenHistory);  
   return (
