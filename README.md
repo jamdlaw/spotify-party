@@ -1,4 +1,4 @@
-#spotify party
+# spotify party
 
 From a console shell:
 
