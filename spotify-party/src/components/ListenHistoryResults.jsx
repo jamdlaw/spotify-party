@@ -5,7 +5,7 @@ const ListenHistoryResults = ({ listenHistory }) => {
   return (
     <div>
       <ul>
-        {historyItems.map((item, index) => (
+        {historyItems[0].map((item, index) => (
           <li key={index}>
             <div>Played at: {new Date(item.played_at).toLocaleString()}</div>
             <div>Track Name: {item.track_name}</div>
