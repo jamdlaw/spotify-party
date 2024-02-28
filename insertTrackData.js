@@ -1,14 +1,5 @@
 const mysql = require('./utils/mysqlUtils');
 
-/*
-// Sample data object
-const sampleData = {
-  "items": [
-    // Your sample data here...
-  ]
-};
-*/
-
 // Function to insert data into the tables
 const insertTrackData = async (sampleData) =>   {
   for (const item of sampleData) {
