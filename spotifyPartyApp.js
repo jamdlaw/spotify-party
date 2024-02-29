@@ -189,6 +189,46 @@ const joinGuestToParty = async (userId, partyId, is_host = 0) => {
 }
 
 
+const createPlaylist = (accessToken, playListName) => {
+    
+  userID = '31afxyqa3va5diljlxixvp53iwqi'; 
+  const url = `https://api.spotify.com/v1/users/${userID}/playlists`;
+  let playlistId = '';
+
+  //return new Spotify Playlist Id
+  return fetch(url, {
+    method: 'POST',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${accessToken}`,
+    },
+    body:JSON.stringify({
+        "name": playListName,
+        "description": "Play list created by spotify party",
+        "public": false 
+    })
+  })
+  .then(res => res.json())
+  .then(data => {return data.id }) 
+  .catch(error => console.log(error));
+}
+
+const getOrInsertUser = async (email, name) => {
+  //check if user exists? 
+  // yes : return userID
+  let userId = await getUserId(email);
+  if(userId){
+      return userId;
+  }
+  //no
+  //insert new user
+  userId = await createUser(email, name );
+  
+  return {"id" : userId.insertId}; 
+}
+  
+
 // Export all functions at once for easy import
 module.exports = {
     insertTrackData,
@@ -200,6 +240,7 @@ module.exports = {
     getProfileData,
     getPartyList,
     joinGuestToParty,
+    createPlaylist,
   };
   
    
