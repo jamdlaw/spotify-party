@@ -4,22 +4,17 @@ const crypto = require('crypto');
 const cors = require('cors');
 const querystring = require('querystring');
 const cookieParser = require('cookie-parser');
+const path = require('path');
 const mysql = require('./utils/mysqlUtils');
 const dotenv = require('dotenv');
 const bodyParser = require('body-parser');
-//const getRecentlyPlayed = require('./getRecentlyPlayed');
-//const insertTrackData = require('./insertTrackData'); 
-//const getRecommendations = require('./getRecommendations');
 const createPlaylist = require('./createPlaylist');
-//const addTracksToPlaylist = require('./addTracksToPlaylist');
-//const createUser = require('./createUser');
-//const createParty = require('./createParty');
 const getOrInsertUser = require('./getOrInsertUser');
-//const getProfileData = require('./getProfileData');
-//const getPartyList = require('./getPartyList');
-//const joinGuestToParty = require('./joinGuestToParty');
-const path = require('path');
-const { joinGuestToParty, getPartyList, getProfileData, insertTrackData, getRecentlyPlayed, getRecommendations, addTracksToPlaylist, createUser, createParty} = require('./spotifyPartyApp');
+
+const { joinGuestToParty, getPartyList, getProfileData,
+        insertTrackData, getRecentlyPlayed,
+       getRecommendations, addTracksToPlaylist,
+       createUser, createParty} = require('./spotifyPartyApp');
 
 
 //TODO: add logging for errors
