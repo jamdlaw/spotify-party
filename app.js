@@ -8,7 +8,7 @@ const mysql = require('./utils/mysqlUtils');
 const dotenv = require('dotenv');
 const bodyParser = require('body-parser');
 const getRecentlyPlayed = require('./getRecentlyPlayed');
-const insertTrackData = require('./insertTrackData'); 
+//const insertTrackData = require('./insertTrackData'); 
 const getRecommendations = require('./getRecommendations');
 const createPlaylist = require('./createPlaylist');
 const addTracksToPlaylist = require('./addTracksToPlaylist');
@@ -19,6 +19,8 @@ const getProfileData = require('./getProfileData');
 const getPartyList = require('./getPartyList');
 const joinGuestToParty = require('./joinGuestToParty');
 const path = require('path');
+const { insertTrackData} = require('./spotifyPartyApp');
+
 
 //TODO: add logging for errors
 dotenv.config();
@@ -50,7 +52,6 @@ app.get('/home', function(req, res){
     res.sendFile(path.join(__dirname, '/public/index.html'));
   })
   
-
 app.get('/login', function(req, res) {
 
   const state = generateRandomString(16);
