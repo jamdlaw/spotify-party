@@ -1,5 +1,5 @@
 const mysql = require('./utils/mysqlUtils');
-
+const request = require('request');
 
 // Function to insert data into the tables
 const insertTrackData = async (sampleData) =>   {
@@ -53,11 +53,153 @@ const insertTrackData = async (sampleData) =>   {
   
   };
   
+  const getRecentlyPlayed = async (accessToken) => {
+    const url = 'https://api.spotify.com/v1/me/player/recently-played?limit=10';
+  
+    try {
+      const response = await fetch(url, {
+        method: 'GET',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${accessToken}`,
+        },
+      });
+      
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+  
+      const data = await response.json();
+      return data.items;
+    } catch (error) {
+      console.error('Error:', error);
+    }
+  };
+  
+  const getSeedTracks = require('./getSeedTracks.js');
+
+  const getRecommendations = async (accessToken) => {  
+    const queryString = await getSeedTracks()
+    const url = 'https://api.spotify.com/v1/recommendations?' + queryString;
+    
+    return fetch(url, {
+      method: 'GET',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${accessToken}`,
+      },
+    })
+    .then(res => res.json())
+    .then(data => data.tracks)
+    .catch(error => console.log(error));
+    
+  };
+  
+const addTracksToPlaylist = async (access_token, playlistId) => {
+     
+    sql = "SELECT uris FROM recommended_tracks limit 5;";
+    tracks = await mysql.query(sql);
+    uris = tracks.map( (track) => track.uris); 
+    
+    url = `https://api.spotify.com/v1/playlists/${playlistId}/tracks`
+    return fetch(url, {
+        method: 'POST',
+        headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${access_token}`,
+        },
+        body:JSON.stringify({"uris": uris})
+        })
+        .then(res => res.json())
+        .then(data => console.log(data))
+        .catch(error => console.log(error));
+  };
+
+
+  const createUser = async (email, name) =>{
+    const sql = "INSERT INTO users (email, name) VALUES(?, ?)";
+    let results = '';
+    try{  
+        results = await mysql.query(sql, [email, name]);
+    } catch(error){
+        console.log(error);
+    }
+
+    return results;
+}
+
+
+const createParty = async (userId, partyName) => {
+    const sqlQuery = 'INSERT INTO party ( user_id, party_name  ) VALUES(?,?)';
+    let results = '';
+    try{
+      results = await mysql.query(sqlQuery,[userId, partyName]);
+    }catch(error){
+      console.log(error);
+    }
+    
+    return results.insertId;
+  }
+
+  const getProfileData = async (access_token) => {
+    return new Promise((resolve, reject) => {
+      let options = {
+          url: 'https://api.spotify.com/v1/me',
+          headers: { 'Authorization': 'Bearer ' + access_token },
+          json: true
+      };
+  
+      // use the access token to access the Spotify Web API
+      let userId = ''; 
+      request.get(options, async function(error, response, body) {
+          //console.log(body.email , body.display_name);
+          resolve(body);      
+      });
+    });
+  }
+  
+
+  const getPartyList = async () =>{
+    return new Promise(async (resolve, reject) => {
+        const sql = "SELECT id, party_name FROM party;";
+        let results = [];
+        try{  
+            results = await mysql.query(sql);
+            resolve(results);
+        } catch(error){
+            resolve(results);
+        }
+    });
+}
+
+
+const joinGuestToParty = async (userId, partyId, is_host = 0) => {
+    const sql = 'INSERT INTO party_guests(user_id, party_id,is_host) VALUES (?,?,?);';
+    try{  
+        results = await mysql.query(sql, [userId, partyId, is_host]);
+    } catch(error){
+        console.log(error);
+    }
+    
+    return {'guestId': results.insertId};
+      
+}
+
+
 // Export all functions at once for easy import
 module.exports = {
     insertTrackData,
-    //anotherFunction,
-    // List other functions here as well
+    getRecentlyPlayed,
+    getRecommendations,
+    addTracksToPlaylist,
+    createUser,
+    createParty,
+    getProfileData,
+    getPartyList,
+    joinGuestToParty,
   };
   
    
