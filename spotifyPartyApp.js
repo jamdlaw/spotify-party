@@ -117,7 +117,6 @@ const addTracksToPlaylist = async (access_token, playlistId) => {
         .catch(error => console.log(error));
   };
 
-
 const createUser = async (email, name) =>{
     const sql = "INSERT INTO users (email, name) VALUES(?, ?)";
     let results = '';
@@ -129,7 +128,6 @@ const createUser = async (email, name) =>{
 
     return results;
 }
-
 
 const createParty = async (userId, partyName) => {
     const sqlQuery = 'INSERT INTO party ( user_id, party_name  ) VALUES(?,?)';
@@ -160,7 +158,6 @@ const getProfileData = async (access_token) => {
     });
   }
   
-
 const getPartyList = async () =>{
     return new Promise(async (resolve, reject) => {
         const sql = "SELECT id, party_name FROM party;";
@@ -174,7 +171,6 @@ const getPartyList = async () =>{
     });
 }
 
-
 const joinGuestToParty = async (userId, partyId, is_host = 0) => {
     const sql = 'INSERT INTO party_guests(user_id, party_id,is_host) VALUES (?,?,?);';
     try{  
@@ -186,7 +182,6 @@ const joinGuestToParty = async (userId, partyId, is_host = 0) => {
     return {'guestId': results.insertId};
       
 }
-
 
 const createPlaylist = (accessToken, playListName) => {
     
