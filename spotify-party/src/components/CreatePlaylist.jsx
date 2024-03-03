@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import CreatePlaylistResults from './CreatePlaylistResults';
-import Cookies from 'js-cookie';
 import { getRecommendations } from '../api';
 
 const CreatePlaylist = () => {
@@ -8,13 +7,11 @@ const CreatePlaylist = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
 
-  const accessToken = Cookies.get('access_token'); // Obtain this from your authentication flow
-
   const fetchRecommendations = async () => {
     setLoading(true);
     setError('');
     try {
-      const result = await getRecommendations(accessToken);
+      const result = await getRecommendations();
       if (result) {
         setTracks(result);
       } else {
