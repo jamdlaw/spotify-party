@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
 import CreatePlaylistResults from './CreatePlaylistResults';
 import Cookies from 'js-cookie';
-
-// Assuming getRecommendations is imported or defined here
-// import { getRecommendations } from './api';
+import { getRecommendations } from '../api';
 
 const CreatePlaylist = () => {
   const [tracks, setTracks] = useState([]);
