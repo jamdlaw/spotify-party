@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import CreatePlaylistResults from './CreatePlaylistResults';
+import Cookies from 'js-cookie';
 
 // Assuming getRecommendations is imported or defined here
 // import { getRecommendations } from './api';
@@ -9,7 +10,7 @@ const CreatePlaylist = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
 
-  const accessToken = 'your_access_token_here'; // Obtain this from your authentication flow
+  const accessToken = Cookies.get('access_token'); // Obtain this from your authentication flow
 
   const fetchRecommendations = async () => {
     setLoading(true);
