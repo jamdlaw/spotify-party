@@ -1,5 +1,6 @@
 const mysql = require('./utils/mysqlUtils');
 const request = require('request');
+const getSeedTracks = require('./getSeedTracks.js');
 
 // Function to insert data into the tables
 const insertTrackData = async (sampleData) =>   {
@@ -53,7 +54,7 @@ const insertTrackData = async (sampleData) =>   {
   
   };
   
-  const getRecentlyPlayed = async (accessToken) => {
+const getRecentlyPlayed = async (accessToken) => {
     const url = 'https://api.spotify.com/v1/me/player/recently-played?limit=10';
   
     try {
@@ -77,9 +78,7 @@ const insertTrackData = async (sampleData) =>   {
     }
   };
   
-  const getSeedTracks = require('./getSeedTracks.js');
-
-  const getRecommendations = async (accessToken) => {  
+const getRecommendations = async (accessToken) => {  
     const queryString = await getSeedTracks()
     const url = 'https://api.spotify.com/v1/recommendations?' + queryString;
     
@@ -119,7 +118,7 @@ const addTracksToPlaylist = async (access_token, playlistId) => {
   };
 
 
-  const createUser = async (email, name) =>{
+const createUser = async (email, name) =>{
     const sql = "INSERT INTO users (email, name) VALUES(?, ?)";
     let results = '';
     try{  
@@ -144,7 +143,7 @@ const createParty = async (userId, partyName) => {
     return results.insertId;
   }
 
-  const getProfileData = async (access_token) => {
+const getProfileData = async (access_token) => {
     return new Promise((resolve, reject) => {
       let options = {
           url: 'https://api.spotify.com/v1/me',
@@ -162,7 +161,7 @@ const createParty = async (userId, partyName) => {
   }
   
 
-  const getPartyList = async () =>{
+const getPartyList = async () =>{
     return new Promise(async (resolve, reject) => {
         const sql = "SELECT id, party_name FROM party;";
         let results = [];
