@@ -1,8 +1,12 @@
 import React from 'react'
+import CreatePlaylistResults from './CreatePlaylistResults'
 
 function CreatePlaylist() {
   return (
-    <div>CreatePlaylist</div>
+    <>
+    <h3>CreatePlaylist</h3>
+    <CreatePlaylistResults />
+    </>
   )
 }
 
