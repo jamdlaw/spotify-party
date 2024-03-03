@@ -1,8 +1,10 @@
+import Cookies from 'js-cookie';
+
 // Utility function to construct headers
 const constructHeaders = (accessToken) => ({
     Accept: 'application/json',
     'Content-Type': 'application/json',
-    Authorization: `Bearer ${accessToken}`,
+    Authorization: `Bearer ${Cookies.get('access_token')}`,
   });
   
   // Function to get seed tracks - assuming you have this implemented
