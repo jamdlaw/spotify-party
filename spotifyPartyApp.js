@@ -183,7 +183,7 @@ const joinGuestToParty = async (userId, partyId, is_host = 0) => {
       
 }
 
-const createPlaylist = (accessToken, playListName) => {
+const createPlaylist = (accessToken, playlistName) => {
     
   userID = '31afxyqa3va5diljlxixvp53iwqi'; 
   const url = `https://api.spotify.com/v1/users/${userID}/playlists`;
@@ -198,7 +198,7 @@ const createPlaylist = (accessToken, playListName) => {
       Authorization: `Bearer ${accessToken}`,
     },
     body:JSON.stringify({
-        "name": playListName,
+        "name": playlistName,
         "description": "Play list created by spotify party",
         "public": false 
     })
