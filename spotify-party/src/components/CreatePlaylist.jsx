@@ -5,12 +5,13 @@ import Button from './Button';
 
 const CreatePlaylist = () => {
   const [tracks, setTracks] = useState([]);
-  const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
+  const [playlistName, setPlaylistName] = useState('');
 
-  const fetchRecommendations = async () => {
-    setLoading(true);
+  const handleSubmit = async (e) => {
+    e.preventDefault();
     setError('');
+
     const access_token = Cookies.get('access_token');
 
     try {
@@ -33,11 +34,19 @@ const CreatePlaylist = () => {
 
   return (
     <>
-    <div> 
-      <Button onClick={fetchRecommendations}>Create Playlist</Button>
-      {error && <p>Error: {error}</p>}
+    <form onSubmit={handleSubmit}>
+        <label htmlFor='playlistName'>Enter party name: </label>
+          <input 
+            id="playlistName"
+            className="form-control"
+            type="text" 
+            value={playlistName}
+            onChange={(e) => setPlaylistName(e.target.value)}
+          />
+        
+        <input type="submit" className="btn btn-primary" />
+      </form>
       <CreatePlaylistResults tracks={tracks} />
-    </div>
     </>
   );
 };
