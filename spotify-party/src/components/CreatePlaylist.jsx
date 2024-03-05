@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import CreatePlaylistResults from './CreatePlaylistResults';
 import Cookies from 'js-cookie';
-import Button from './Button';
 
 const CreatePlaylist = () => {
   const [tracks, setTracks] = useState([]);
