@@ -12,9 +12,9 @@ const CreatePlaylist = () => {
     setLoading(true);
     setError('');
     const access_token = Cookies.get('access_token');
-    
+
     try {
-      const result = await getRecommendations();
+      const result = await fetch(`http://localhost:8888/createPlaylist?access_token=${encodeURIComponent(access_token)}`)
       if (result) {
         setTracks(result);
       } else {
