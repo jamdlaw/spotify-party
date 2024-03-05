@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import CreatePlaylistResults from './CreatePlaylistResults';
 import Cookies from 'js-cookie';
+import Button from './Button';
 
 const CreatePlaylist = () => {
   const [tracks, setTracks] = useState([]);
@@ -29,9 +30,7 @@ const CreatePlaylist = () => {
 
   return (
     <div>
-      <button onClick={fetchRecommendations} disabled={loading}>
-        {loading ? 'Loading...' : 'Get Recommendations'}
-      </button>
+      <Button onClick={fetchRecommendations}>Get Recomendations</Button>
       {error && <p>Error: {error}</p>}
       <CreatePlaylistResults tracks={tracks} />
     </div>
