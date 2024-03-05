@@ -27,9 +27,7 @@ const CreatePlaylist = () => {
     } catch (err) {
       setError('Failed to fetch recommendations');
       console.error(err);
-    } finally {
-      setLoading(false);
-    }
+    } 
   };
 
   return (
