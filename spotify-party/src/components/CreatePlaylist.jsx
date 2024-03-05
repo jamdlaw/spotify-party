@@ -16,8 +16,11 @@ const CreatePlaylist = () => {
 
     try {
       const result = await fetch(`http://localhost:8888/createPlaylist?`, {
-        method:POST,
-        body:{access_token:access_token}
+        method:'POST',
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body:JSON.stringify({"access_token":access_token , "playListName":playlistName})
       });
       if (result) {
         setTracks(result);
