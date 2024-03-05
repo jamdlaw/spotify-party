@@ -30,7 +30,16 @@ const CreatePlaylist = () => {
 
   return (
     <div>
-      <Button onClick={fetchRecommendations}>Get Recomendations</Button>
+      <label htmlFor='playlistName'>Playlist name: </label>
+          <input 
+            id="playlistName"
+            className="form-control"
+            type="text" 
+            value={playlistName}
+            onChange={(e) => setName(e.target.value)}
+          />
+        
+      <Button onClick={fetchRecommendations}>Create Playlist</Button>
       {error && <p>Error: {error}</p>}
       <CreatePlaylistResults tracks={tracks} />
     </div>
