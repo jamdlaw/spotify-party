@@ -14,7 +14,10 @@ const CreatePlaylist = () => {
     const access_token = Cookies.get('access_token');
 
     try {
-      const result = await fetch(`http://localhost:8888/createPlaylist?access_token=${encodeURIComponent(access_token)}`)
+      const result = await fetch(`http://localhost:8888/createPlaylist?`, {
+        method:POST,
+        body:{access_token:access_token}
+      });
       if (result) {
         setTracks(result);
       } else {
@@ -29,20 +32,13 @@ const CreatePlaylist = () => {
   };
 
   return (
-    <div>
-      <label htmlFor='playlistName'>Playlist name: </label>
-          <input 
-            id="playlistName"
-            className="form-control"
-            type="text" 
-            value={playlistName}
-            onChange={(e) => setName(e.target.value)}
-          />
-        
+    <>
+    <div> 
       <Button onClick={fetchRecommendations}>Create Playlist</Button>
       {error && <p>Error: {error}</p>}
       <CreatePlaylistResults tracks={tracks} />
     </div>
+    </>
   );
 };
 
