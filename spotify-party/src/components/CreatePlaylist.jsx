@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import CreatePlaylistResults from './CreatePlaylistResults';
-import { getRecommendations } from '../api';
 import Cookies from 'js-cookie';
 
 const CreatePlaylist = () => {
