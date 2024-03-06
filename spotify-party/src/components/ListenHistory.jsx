@@ -1,13 +1,16 @@
 import React, { useState } from 'react';
+import { useNavigate } from "react-router-dom";
 import Cookies from 'js-cookie';
 import Button from './Button';
 import ListenHistoryResults from './ListenHistoryResults';
 
 
 
+
 const getListenHistory = () => {
 
   const [listenHistory, setlistenHistory] = useState({});
+  const navigate = useNavigate();
 
   function getListenHistory(){
     const access_token = Cookies.get('access_token');
@@ -17,6 +20,10 @@ const getListenHistory = () => {
       setlistenHistory(data);
     })
     .catch(error => console.error('Error:', error));
+  }
+
+  const createPlaylist = () =>{
+    navigate("/CreatePlaylist");
   }
 
   return (
