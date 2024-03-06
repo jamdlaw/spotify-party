@@ -183,11 +183,9 @@ const joinGuestToParty = async (userId, partyId, is_host = 0) => {
       
 }
 
-const createPlaylist = (accessToken, playlistName) => {
-  
-  //TODO:need to save party host's spotifyID, so mine is not here
-  userID = '31afxyqa3va5diljlxixvp53iwqi'; 
-  const url = `https://api.spotify.com/v1/users/${userID}/playlists`;
+const createPlaylist = (accessToken, playlistName, spotifyUserID) => {
+   
+  const url = `https://api.spotify.com/v1/users/${spotifyUserID}/playlists`;
   let playlistId = '';
 
   //return new Spotify Playlist Id
