@@ -6,30 +6,33 @@ const CreatePlaylist = () => {
   const [tracks, setTracks] = useState([]);
   const [error, setError] = useState('');
   const [playlistName, setPlaylistName] = useState('');
+  const access_token = Cookies.get('access_token');
+  const spotifyUserID = Cookies.get('spotifyUserID');
 
+
+  
   useEffect(() => {
-    // Function to fetch data
+    
     const fetchData = async () => {
       try {
-        const response = await fetch('https://api.example.com/data');
+        const response = await fetch(`http://localhost:8888/getRecommendations?access_token=${access_token}`);
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }
         const data = await response.json();
-        setData(data); // Set the fetched data in state
+        setTracks(data); // Set the fetched data in state
       } catch (error) {
         setError(error.message); // Set error in state if fetching fails
         console.error("Failed to fetch data:", error);
       }
     };
-  }); 
+
+    fetchData();
+  }, []); 
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
-
-    const access_token = Cookies.get('access_token');
-    const spotifyUserID = Cookies.get('spotifyUserID');
 
     try {
       const result = await fetch(`http://localhost:8888/createPlaylist?`, {
