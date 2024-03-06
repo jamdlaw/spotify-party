@@ -105,13 +105,15 @@ app.get('/callback', async function(req, res) {
         const responseData = {
           access_token: access_token,
           refresh_token: refresh_token,
-          userId: UserId.id
+          userId: UserId.id,
+          spotifyUserID: profile.id
         };
         
         // Set cookies with the data
         res.cookie('access_token', access_token);
         res.cookie('refresh_token', refresh_token);
         res.cookie('userId', UserId.id);
+        res.cookie('spotifyUserID', profile.id);
         
         res.redirect(process.env.REACT_APP_URL);
       } else {

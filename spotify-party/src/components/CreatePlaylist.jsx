@@ -19,7 +19,10 @@ const CreatePlaylist = () => {
         headers: {
           "Content-Type": "application/json",
         },
-        body:JSON.stringify({"access_token":access_token , "playlistName":playlistName})
+        body:JSON.stringify({"access_token":access_token,
+                             "playlistName":playlistName,
+                             "spotifyUserID":'31afxyqa3va5diljlxixvp53iwqi'
+                    })
       });
       if (result) {
         setTracks(result);
