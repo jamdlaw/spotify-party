@@ -12,6 +12,9 @@ const CreatePlaylistResults = ({ tracks }) => {
         {tracks.map((track, index) => (
           <div>
           <li key={index}>{track.name} by {track.artists.map(artist => artist.name).join(', ')}</li>
+          {track.album.images.map((image, imgIndex) => (
+            <img key={imgIndex} src={image.url} alt="Album Art" style={{ width: '100px', height: '100px' }} /> // Example styling
+          ))}
           <audio controls>
             <source src={track.preview_url} type="audio/mp3" />
             Your browser does not support the audio element.
