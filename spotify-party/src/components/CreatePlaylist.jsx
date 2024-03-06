@@ -30,6 +30,16 @@ const CreatePlaylist = () => {
     getRecommendations();
   }, []); 
 
+  const addTrackstoPlaylist = (playlistId) => {
+    fetch('http://localhost:8888/addTracksToPlaylist' ,{
+      method: 'POST',
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({"access_token":access_token, "playListId":playlistId })
+    });
+  }
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
@@ -47,8 +57,9 @@ const CreatePlaylist = () => {
       });
       if (result.ok) {
         const data = await result.json(); // Parse the JSON response
-        const playlistID = data.playlistID; // Extract the playlistID
-        console.log(playlistID);
+        const playlistId = data.playlistID; // Extract the playlistID
+        addTrackstoPlaylist(playlistId);
+        
       } else {
         setError('No results found');
       }
