@@ -12,6 +12,7 @@ const CreatePlaylist = () => {
     setError('');
 
     const access_token = Cookies.get('access_token');
+    const spotifyUserID = Cookies.get('spotifyUserID');
 
     try {
       const result = await fetch(`http://localhost:8888/createPlaylist?`, {
@@ -21,7 +22,7 @@ const CreatePlaylist = () => {
         },
         body:JSON.stringify({"access_token":access_token,
                              "playlistName":playlistName,
-                             "spotifyUserID":'31afxyqa3va5diljlxixvp53iwqi'
+                             "spotifyUserID":spotifyUserID
                     })
       });
       if (result) {
