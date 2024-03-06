@@ -10,7 +10,13 @@ const CreatePlaylistResults = ({ tracks }) => {
       <h2>Recommendations</h2>
       <ul>
         {tracks.map((track, index) => (
+          <div>
           <li key={index}>{track.name} by {track.artists.map(artist => artist.name).join(', ')}</li>
+          <audio controls>
+            <source src={track.preview_url} type="audio/mp3" />
+            Your browser does not support the audio element.
+          </audio>
+          </div>
         ))}
       </ul>
     </div>
