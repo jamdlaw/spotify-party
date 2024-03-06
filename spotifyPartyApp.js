@@ -102,20 +102,26 @@ const addTracksToPlaylist = async (access_token, playlistId) => {
     tracks = await mysql.query(sql);
     uris = tracks.map( (track) => track.uris); 
     
-    url = `https://api.spotify.com/v1/playlists/${playlistId}/tracks`
-    return fetch(url, {
-        method: 'POST',
-        headers: {
-            Accept: 'application/json',
-            'Content-Type': 'application/json',
-            Authorization: `Bearer ${access_token}`,
-        },
-        body:JSON.stringify({"uris": uris})
-        })
-        .then(res => res.json())
-        .then(data => console.log(data))
-        .catch(error => console.log(error));
-  };
+    const url = `https://api.spotify.com/v1/playlists/${playlistId}/tracks`;
+
+    try {
+      const response = await fetch(url, {
+          method: 'POST',
+          headers: {
+              Accept: 'application/json',
+              'Content-Type': 'application/json',
+              Authorization: `Bearer ${access_token}`,
+          },
+          body: JSON.stringify({ "uris": uris })
+      });
+
+      const data = await response.json();
+      
+      return data; 
+  } catch (error) {
+      console.log(error);
+  }
+}
 
 const createUser = async (email, name) =>{
     const sql = "INSERT INTO users (email, name) VALUES(?, ?)";
