@@ -1,6 +1,7 @@
 import React from 'react'
 import { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import Cookies from 'js-cookie';
 
 const CreateParty = () => {
   
@@ -9,14 +10,15 @@ const CreateParty = () => {
     const handleSubmit = (event) => {
       event.preventDefault();
       
-      let party_name = partyName; 
+      const party_name = partyName; 
+      const userId = Cookies.get('userId');
 
         fetch('http://localhost:8888/createParty', {
           method: 'POST',
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({"partyname":party_name, "userid": localStorage.getItem('userId')})
+          body: JSON.stringify({"partyname":party_name, "userid":userId })
         })
         .then(response => {
           // Handle the response as needed
