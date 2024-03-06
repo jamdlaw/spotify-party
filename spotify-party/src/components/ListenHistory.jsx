@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Cookies from 'js-cookie';
 import Button from './Button';
 import ListenHistoryResults from './ListenHistoryResults';
+import CreatePlaylist from './CreatePlaylist';
 
 
 const getListenHistory = () => {
@@ -22,6 +23,7 @@ const getListenHistory = () => {
     <>
     <h3>ListenHistory</h3>
     <Button onClick={getListenHistory}>Get Listen History</Button> 
+    {listenHistory && <Button onClick={createPlaylist}>Get Listen History</Button>}
     {listenHistory && < ListenHistoryResults listenHistory={listenHistory}/>}
     </>   
   )
