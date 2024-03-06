@@ -1,12 +1,14 @@
 import React from 'react'
 import { useState } from 'react';
+import { useNavigate } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Cookies from 'js-cookie';
 
 const CreateParty = () => {
   
     const [partyName, setName] = useState("");
-  
+    const navigate = useNavigate();
+
     const handleSubmit = (event) => {
       event.preventDefault();
       
@@ -21,8 +23,8 @@ const CreateParty = () => {
           body: JSON.stringify({"partyname":party_name, "userid":userId })
         })
         .then(response => {
-          // Handle the response as needed
           console.log('Party created!', response);
+          navigate("/ListenHistory");
         })
         .catch(error => {
           // Handle errors
