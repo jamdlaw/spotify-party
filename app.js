@@ -217,9 +217,8 @@ app.post('/createPlaylist', async function(req, res){
   const spotifyUserID = req.body.spotifyUserID;
 
   const playListId = await createPlaylist(access_token, playlistName, spotifyUserID);
-  console.log(playListId);
-
-  res.send(JSON.stringify(playListId));
+  
+  res.send({'playlistID': playListId});
 });
 
 app.post('/addTracksToPlaylist', function(req, res){

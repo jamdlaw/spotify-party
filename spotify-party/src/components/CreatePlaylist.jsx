@@ -45,8 +45,10 @@ const CreatePlaylist = () => {
                              "spotifyUserID":spotifyUserID
                     })
       });
-      if (result) {
-        setTracks(result);
+      if (result.ok) {
+        const data = await result.json(); // Parse the JSON response
+        const playlistID = data.playlistID; // Extract the playlistID
+        console.log(playlistID);
       } else {
         setError('No results found');
       }
