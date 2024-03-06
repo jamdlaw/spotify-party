@@ -13,7 +13,7 @@ const CreatePlaylist = () => {
   
   useEffect(() => {
     
-    const fetchData = async () => {
+    const getRecommendations = async () => {
       try {
         const response = await fetch(`http://localhost:8888/getRecommendations?access_token=${access_token}`);
         if (!response.ok) {
@@ -27,7 +27,7 @@ const CreatePlaylist = () => {
       }
     };
 
-    fetchData();
+    getRecommendations();
   }, []); 
 
   const handleSubmit = async (e) => {
