@@ -1,10 +1,13 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css'; // Ensure Bootstrap is imported
 import Cookies from 'js-cookie';
+import { useNavigate } from "react-router-dom";
 
 const ClickableList = ({ parties }) => {
   // Function to handle click events on list items
   const userId = Cookies.get('userId');
+  const navigate = useNavigate();
+
   const handleClick = async (party) => {
   try{
     const response = await fetch('http://localhost:8888/joinGuestToParty', {
@@ -22,7 +25,8 @@ const ClickableList = ({ parties }) => {
 
     const responseData = await response.json(); 
     console.log(responseData.results.guestId); 
-
+    navigate("/ListenHistory");
+    
   } catch(error){
     console.error('Failed to send data:', error);
   }
