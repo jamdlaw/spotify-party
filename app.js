@@ -9,13 +9,13 @@ const mysql = require('./utils/mysqlUtils');
 const dotenv = require('dotenv');
 const bodyParser = require('body-parser');
 //const createPlaylist = require('./createPlaylist');
-const getOrInsertUser = require('./getOrInsertUser');
+//const getOrInsertUser = require('./getOrInsertUser');
 
 const { joinGuestToParty, getPartyList, getProfileData,
         insertTrackData, getRecentlyPlayed,
        getRecommendations, addTracksToPlaylist,
        createUser, createParty, 
-       createPlaylist} = require('./spotifyPartyApp');
+       createPlaylist, getOrInsertUser} = require('./spotifyPartyApp');
 
 
 //TODO: add logging for errors
