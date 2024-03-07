@@ -16,10 +16,6 @@ const ListenHistoryResults = ({ listenHistory }) => {
             <div>Played at: {new Date(item.played_at).toLocaleString()}</div>
             <div>Track Name: {item.track_name}</div>
             <div>Track URI: <a href={`https://open.spotify.com/track/${item.track_uri}`}>{item.track_uri}</a></div>
-            <audio controls>
-            <source src={item.preview_url} type="audio/mp3" />
-            Your browser does not support the audio element.
-          </audio>
           </li>
         ))}
       </ul>
