@@ -1,6 +1,5 @@
 const mysql = require('./utils/mysqlUtils');
 const request = require('request');
-//const getSeedTracks = require('./getSeedTracks.js');
 
 // Function to insert data into the tables
 const insertTrackData = async (sampleData) =>   {
