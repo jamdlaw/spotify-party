@@ -227,6 +227,18 @@ const getOrInsertUser = async (email, name) => {
   return {"id" : userId.insertId}; 
 }
   
+const getUserId = async (email) =>{
+  const sql = "SELECT id FROM USERS WHERE email = ? ";
+  let results = '';
+  try{  
+      results = await mysql.query(sql, email);
+  } catch(error){
+      console.log(error);
+  }
+  
+  return results[0];
+}
+
 
 // Export all functions at once for easy import
 module.exports = {
@@ -240,6 +252,8 @@ module.exports = {
     getPartyList,
     joinGuestToParty,
     createPlaylist,
+    getOrInsertUser,
+    getUserId,
   };
   
    
