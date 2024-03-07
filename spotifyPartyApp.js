@@ -1,6 +1,6 @@
 const mysql = require('./utils/mysqlUtils');
 const request = require('request');
-const getSeedTracks = require('./getSeedTracks.js');
+//const getSeedTracks = require('./getSeedTracks.js');
 
 // Function to insert data into the tables
 const insertTrackData = async (sampleData) =>   {
@@ -239,6 +239,24 @@ const getUserId = async (email) =>{
   return results[0];
 }
 
+const getSeedTracks = () =>{ 
+  return new Promise((resolve, reject) => {
+      const sqlQuery = 'SELECT distinct track_id FROM tracks limit 5'; 
+      const seedTracks = [];
+      let queryString = '';
+      let recommendations = '';
+      mysql.query(sqlQuery).then(data =>{
+          data.forEach(track => {
+          seedTracks.push(track.track_id);
+          });
+          query = {seed_tracks: seedTracks};
+          const params = new URLSearchParams(query);
+          queryString = params.toString();
+          return resolve(queryString);
+          });
+      
+      });
+  };
 
 // Export all functions at once for easy import
 module.exports = {
@@ -254,6 +272,7 @@ module.exports = {
     createPlaylist,
     getOrInsertUser,
     getUserId,
+    getSeedTracks,
   };
   
    
