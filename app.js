@@ -8,8 +8,6 @@ const path = require('path');
 const mysql = require('./utils/mysqlUtils');
 const dotenv = require('dotenv');
 const bodyParser = require('body-parser');
-//const createPlaylist = require('./createPlaylist');
-//const getOrInsertUser = require('./getOrInsertUser');
 
 const { joinGuestToParty, getPartyList, getProfileData,
         insertTrackData, getRecentlyPlayed,
