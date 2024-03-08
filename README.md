@@ -11,7 +11,7 @@ run following sql to auth user on local machine:
 
 step 3 start backend open console at root spotify-party folder:
 
-    $ nodemon
+    $ npm run dev
 
 
 step 4 cd to spotify-party inside of root folder and run:
