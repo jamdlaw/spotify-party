@@ -1,7 +1,7 @@
 const mysql = require('./utils/mysqlUtils');
 const request = require('request');
 
-// Function to insert data into the tables
+
 const insertTrackData = async (sampleData) =>   {
     if (typeof sampleData === 'undefined' || sampleData === null || sampleData === '') {
       return;
