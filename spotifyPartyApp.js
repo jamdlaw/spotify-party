@@ -188,28 +188,36 @@ const joinGuestToParty = async (userId, partyId, is_host = 0) => {
       
 }
 
-const createPlaylist = (accessToken, playlistName, spotifyUserID) => {
+const createPlaylist = async (accessToken, playlistName, spotifyUserID) => {
    
   const url = `https://api.spotify.com/v1/users/${spotifyUserID}/playlists`;
   let playlistId = '';
-
-  //return new Spotify Playlist Id
-  return fetch(url, {
-    method: 'POST',
-    headers: {
-      Accept: 'application/json',
-      'Content-Type': 'application/json',
-      Authorization: `Bearer ${accessToken}`,
-    },
-    body:JSON.stringify({
-        "name": playlistName,
-        "description": "Play list created by spotify party",
-        "public": false 
+  try{
+    //return new Spotify Playlist Id
+    const response =  await fetch(url, {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${accessToken}`,
+      },
+      body:JSON.stringify({
+          "name": playlistName,
+          "description": "Play list created by spotify party",
+          "public": false 
+      })
     })
-  })
-  .then(res => res.json())
-  .then(data => {return data.id }) 
-  .catch(error => console.log(error));
+    
+    if(!response.ok){
+      console.log("Network error");
+    } 
+
+    const data = response.json();
+
+    return data;
+  } catch(error){
+    console.log(error);
+  }
 }
 
 const getOrInsertUser = async (email, name) => {
