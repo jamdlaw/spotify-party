@@ -94,7 +94,7 @@ const getRecommendations = async (accessToken) => {
     .catch(error => console.log(error));
     
   };
-  
+//after playlist is created add the songs  
 const addTracksToPlaylist = async (access_token, playlistId) => {
      
     sql = "SELECT uris FROM recommended_tracks limit 5;";
@@ -121,7 +121,7 @@ const addTracksToPlaylist = async (access_token, playlistId) => {
       console.log(error);
   }
 }
-
+//create new spotify party app user
 const createUser = async (email, name) =>{
     const sql = "INSERT INTO users (email, name) VALUES(?, ?)";
     let results = '';
@@ -133,7 +133,7 @@ const createUser = async (email, name) =>{
 
     return results;
 }
-
+//insert new row in party table
 const createParty = async (userId, partyName) => {
     const sqlQuery = 'INSERT INTO party ( user_id, party_name  ) VALUES(?,?)';
     let results = '';
