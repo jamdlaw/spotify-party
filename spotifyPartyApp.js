@@ -175,7 +175,7 @@ const getPartyList = async () =>{
         }
     });
 }
-
+//add user id to party table
 const joinGuestToParty = async (userId, partyId, is_host = 0) => {
     const sql = 'INSERT INTO party_guests(user_id, party_id,is_host) VALUES (?,?,?);';
     try{  
@@ -187,7 +187,7 @@ const joinGuestToParty = async (userId, partyId, is_host = 0) => {
     return {'guestId': results.insertId};
       
 }
-
+//create spotify playlist and return new ID
 const createPlaylist = async (accessToken, playlistName, spotifyUserID) => {
    
   const url = `https://api.spotify.com/v1/users/${spotifyUserID}/playlists`;
@@ -219,7 +219,7 @@ const createPlaylist = async (accessToken, playlistName, spotifyUserID) => {
     console.log(error);
   }
 }
-
+//if user exists return id else insert new user
 const getOrInsertUser = async (email, name) => {
   //check if user exists? 
   // yes : return userID
