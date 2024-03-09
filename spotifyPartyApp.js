@@ -260,8 +260,7 @@ const getSeedTracks = () =>{
           const params = new URLSearchParams(query);
           queryString = params.toString();
           return resolve(queryString);
-          });
-      
+        });
       });
   };
 
