@@ -197,8 +197,7 @@ app.get('/history', async function(req, res){
 });
 
 app.get('/getRecommendations', async function(req, res){
-  let access_token = req.query.access_token;
-  let userId = req.query.userId;
+  const { access_token, userId } = req.query;
 
   data = await getRecommendations(access_token, userId);
   data.forEach(track => {
