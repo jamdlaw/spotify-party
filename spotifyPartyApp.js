@@ -246,13 +246,13 @@ const getUserId = async (email) =>{
   return results[0];
 }
 
-const getSeedTracks = () =>{ 
+const getSeedTracks = (userId) =>{ 
   return new Promise((resolve, reject) => {
-      const sqlQuery = 'SELECT distinct track_id FROM tracks limit 5'; 
+      const sqlQuery = 'SELECT distinct track_id FROM tracks where user_id = ? limit 5'; 
       const seedTracks = [];
       let queryString = '';
       let recommendations = '';
-      mysql.query(sqlQuery).then(data =>{
+      mysql.query(sqlQuery, userId).then(data =>{
           data.forEach(track => {
           seedTracks.push(track.track_id);
           });
