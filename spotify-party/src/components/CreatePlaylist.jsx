@@ -8,6 +8,7 @@ const CreatePlaylist = () => {
   const [playlistName, setPlaylistName] = useState('');
   const access_token = Cookies.get('access_token');
   const spotifyUserID = Cookies.get('spotifyUserID');
+  const userId = Cookies.get('userId');
 
 
   
