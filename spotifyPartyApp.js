@@ -77,8 +77,8 @@ const getRecentlyPlayed = async (accessToken) => {
     }
   };
   
-const getRecommendations = async (accessToken) => {  
-    const queryString = await getSeedTracks()
+const getRecommendations = async (accessToken, userId) => {  
+    const queryString = await getSeedTracks(userId)
     const url = 'https://api.spotify.com/v1/recommendations?' + queryString;
     
     return fetch(url, {
