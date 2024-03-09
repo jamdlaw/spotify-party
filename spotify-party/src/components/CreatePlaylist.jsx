@@ -15,8 +15,9 @@ const CreatePlaylist = () => {
   useEffect(() => {
     
     const getRecommendations = async () => {
+      const url = `http://localhost:8888/getRecommendations?access_token=${access_token}&userId=${userId}`;
       try {
-        const response = await fetch(`http://localhost:8888/getRecommendations?access_token=${access_token}`);
+        const response = await fetch(url);
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }
