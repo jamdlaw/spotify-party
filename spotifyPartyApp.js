@@ -164,16 +164,14 @@ const getProfileData = async (access_token) => {
   }
   
 const getPartyList = async () =>{
-    return new Promise(async (resolve, reject) => {
-        const sql = "SELECT id, party_name FROM party;";
-        let results = [];
-        try{  
-            results = await mysql.query(sql);
-            resolve(results);
-        } catch(error){
-            resolve(results);
-        }
-    });
+    const sql = "SELECT id, party_name FROM party;";
+    try {
+        const results = await mysql.query(sql);
+        return results; // Return the results directly
+    } catch (error) {
+        console.error("Error fetching party list:", error);
+        return []; // Return an empty array or handle the error as appropriate
+    } 
 }
 //add user id to party table
 const joinGuestToParty = async (userId, partyId, is_host = 0) => {
