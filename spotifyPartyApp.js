@@ -167,7 +167,7 @@ const getPartyList = async () =>{
     const sql = "SELECT id, party_name FROM party;";
     try {
         const results = await mysql.query(sql);
-        return results; // Return the results directly
+        return results; 
     } catch (error) {
         console.error("Error fetching party list:", error);
         return []; // Return an empty array or handle the error as appropriate
