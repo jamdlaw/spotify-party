@@ -251,14 +251,14 @@ const getSeedTracks = async (userId) => {
   const sqlQuery = 'SELECT distinct track_id FROM tracks where user_id = ? limit 5';
 
   try {
-      const data = await mysql.query(sqlQuery, userId); // Await directly the query result
-      const seedTracks = data.map(track => track.track_id); // Map the data to extract track_id
+      const data = await mysql.query(sqlQuery, userId); 
+      const seedTracks = data.map(track => track.track_id); 
       const query = { seed_tracks: seedTracks };
       const params = new URLSearchParams(query);
-      return params.toString(); // Return the queryString directly
+      return params.toString(); 
   } catch (error) {
       console.error("Error fetching seed tracks:", error);
-      throw error; // Rethrow or handle the error appropriately
+      throw error; 
   }
 };
 
