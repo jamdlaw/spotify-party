@@ -1,7 +1,7 @@
 const mysql = require('./utils/mysqlUtils');
 const request = require('request');
 
-
+//insert song data from listen history
 const insertTrackData = async (sampleData) =>   {
     if (typeof sampleData === 'undefined' || sampleData === null || sampleData === '') {
       return;
@@ -52,7 +52,8 @@ const insertTrackData = async (sampleData) =>   {
     }
   
   };
-  
+
+// get guests / hosts recenlty played from spotify  
 const getRecentlyPlayed = async (accessToken) => {
     const url = 'https://api.spotify.com/v1/me/player/recently-played?limit=10';
   
@@ -76,7 +77,7 @@ const getRecentlyPlayed = async (accessToken) => {
       console.error('Error:', error);
     }
   };
-  
+//use spotify endpoint  
 const getRecommendations = async (accessToken, userId) => {  
     const queryString = await getSeedTracks(userId)
     const url = 'https://api.spotify.com/v1/recommendations?' + queryString;
@@ -163,7 +164,7 @@ const getProfileData = async (access_token) => {
     throw error;
   }
 };
-    
+//get a list of parties people can join    
 const getPartyList = async () =>{
     const sql = "SELECT id, party_name FROM party;";
     try {
@@ -232,7 +233,7 @@ const getOrInsertUser = async (email, name) => {
   
   return {"id" : userId.insertId}; 
 }
-  
+//lookup user pay email return id  
 const getUserId = async (email) =>{
   const sql = "SELECT id FROM USERS WHERE email = ? ";
   let results = '';
@@ -245,6 +246,7 @@ const getUserId = async (email) =>{
   return results[0];
 }
 
+//busines logic to get tracks for playlist
 const getSeedTracks = (userId) =>{ 
   return new Promise((resolve, reject) => {
       const sqlQuery = 'SELECT distinct track_id FROM tracks where user_id = ? limit 5'; 
