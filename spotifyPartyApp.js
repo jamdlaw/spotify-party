@@ -145,7 +145,7 @@ const createParty = async (userId, partyName) => {
     
     return results.insertId;
   }
-
+//get profile data from spotify
 const getProfileData = async (access_token) => {
   const url = 'https://api.spotify.com/v1/me';
   const headers = { 'Authorization': 'Bearer ' + access_token };
