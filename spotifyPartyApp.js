@@ -157,7 +157,7 @@ const getProfileData = async (access_token) => {
       // use the access token to access the Spotify Web API
       let userId = ''; 
       request.get(options, async function(error, response, body) {
-          //console.log(body.email , body.display_name);
+          
           resolve(body);      
       });
     });
