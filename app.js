@@ -180,7 +180,7 @@ app.post('/joinGuestToParty', async function(req, res){
 
 app.get('/history', async function(req, res){
   let access_token = req.query.access_token;
-  let ListenHistory = {};
+  
   //TODO: refactor this function to use await 
   // set we can check if data is set fist before calling insertTrackData
   const data = await getRecentlyPlayed(access_token);
