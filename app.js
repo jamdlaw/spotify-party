@@ -210,10 +210,8 @@ app.get('/getRecommendations', async function(req, res){
 
 app.post('/createPlaylist', async function(req, res){
   
-  const access_token = req.body.access_token;
-  const playlistName = req.body.playlistName;
-  const spotifyUserID = req.body.spotifyUserID;
-
+  const {access_token, playlistName, spotifyUserID} = req.body;
+  
   const playListId = await createPlaylist(access_token, playlistName, spotifyUserID);
   
   res.send({'playlistID': playListId});
