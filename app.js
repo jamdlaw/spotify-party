@@ -221,9 +221,8 @@ app.post('/createPlaylist', async function(req, res){
 
 app.post('/addTracksToPlaylist', function(req, res){
   
-  const access_token = req.body.access_token;
-  const playlistId = req.body.playListId; 
-
+  const {access_token, playlistId} = req.body.access_token;
+  
   addTracksToPlaylist(access_token,playlistId);
   
   res.send('tracks added');
