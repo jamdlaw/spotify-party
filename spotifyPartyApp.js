@@ -147,22 +147,23 @@ const createParty = async (userId, partyName) => {
   }
 
 const getProfileData = async (access_token) => {
-    return new Promise((resolve, reject) => {
-      let options = {
-          url: 'https://api.spotify.com/v1/me',
-          headers: { 'Authorization': 'Bearer ' + access_token },
-          json: true
-      };
-  
-      // use the access token to access the Spotify Web API
-      let userId = ''; 
-      request.get(options, async function(error, response, body) {
-          
-          resolve(body);      
-      });
-    });
+  const url = 'https://api.spotify.com/v1/me';
+  const headers = { 'Authorization': 'Bearer ' + access_token };
+
+  try {
+    const response = await fetch(url, { headers: headers });
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    const body = await response.json();
+    return body;
+  } catch (error) {
+    console.error("Failed to fetch profile data:", error);
+    // Handle or throw the error appropriately
+    throw error;
   }
-  
+};
+    
 const getPartyList = async () =>{
     const sql = "SELECT id, party_name FROM party;";
     try {
