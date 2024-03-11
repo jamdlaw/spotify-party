@@ -136,7 +136,7 @@ const createUser = async (email, name) =>{
 }
 //insert new row in party table
 const createParty = async (userId, partyName) => {
-    const sqlQuery = 'INSERT INTO party ( user_id, party_name  ) VALUES(?,?)';
+    const sqlQuery = 'INSERT INTO party ( host_id, party_name  ) VALUES(?,?)';
     let results = '';
     try{
       results = await mysql.query(sqlQuery,[userId, partyName]);
