@@ -89,7 +89,6 @@ CREATE TABLE `party_guests` (
   `id` int NOT NULL AUTO_INCREMENT,
   `party_id` int DEFAULT NULL,
   `user_id` int DEFAULT NULL,
-  `is_host` int DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -178,4 +177,4 @@ CREATE TABLE `users` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-03-09 11:19:42
+-- Dump completed on 2024-03-11 13:29:00
