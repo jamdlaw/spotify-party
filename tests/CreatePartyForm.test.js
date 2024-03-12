@@ -8,8 +8,13 @@ const chrome = require('selenium-webdriver/chrome');
     
     await driver.get('http://localhost:5173/CreateParty');
 
+    // Set a cookie for userId before interacting with the page
+    await driver.manage().addCookie({name: 'userId', value: '20'});
+    // refresh page to make sure cookie is set
+    await driver.navigate().refresh();
+
     let partyNameInput = await driver.wait(until.elementLocated(By.id('partyName')), 10000);
-    await partyNameInput.sendKeys('Test Party', Key.RETURN);
+    await partyNameInput.sendKeys('Test Party 2', Key.RETURN);
 
     // Assuming the submission leads to navigation, wait for the navigation to complete
     // Adjust the URL to match the expected navigation target, e.g., the ListenHistory page
