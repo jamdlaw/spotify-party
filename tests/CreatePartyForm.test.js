@@ -9,7 +9,7 @@ const chrome = require('selenium-webdriver/chrome');
     await driver.get('http://localhost:5173/CreateParty');
 
     // Set a cookie for userId before interacting with the page
-    await driver.manage().addCookie({name: 'userId', value: '20'});
+    await driver.manage().addCookie({name: 'userid', value: '20'});
     // refresh page to make sure cookie is set
     await driver.navigate().refresh();
 
