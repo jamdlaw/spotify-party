@@ -5,10 +5,9 @@ const chrome = require('selenium-webdriver/chrome');
   let driver = await new Builder().forBrowser('chrome').build();
 
   try {
-    // Navigate to the page with the CreateParty form
+    
     await driver.get('http://localhost:5173/CreateParty');
 
-    // Wait for the input element to be loaded and then input a test party name
     let partyNameInput = await driver.wait(until.elementLocated(By.id('partyName')), 10000);
     await partyNameInput.sendKeys('Test Party', Key.RETURN);
 
