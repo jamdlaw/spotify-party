@@ -9,13 +9,13 @@ export function useLogin() {
 }
 
 export const LoginProvider = ({ children }) => {
-  const [isLoggedIn, setIsLoggedIn] = useState(true); //2 disable ract login login = true
+  const [isLoggedIn, setIsLoggedIn] = useState(true); 
 
   // You would have a method to check if user is logged in
   // For example, checking a token in localStorage
   const checkLogin = () => {
     const access_token = Cookies.get('access_token');
-    setIsLoggedIn(true); //2 disable ract login login = true
+    setIsLoggedIn(true); // paramiter is !!access_token 
   };
 
   const value = {
