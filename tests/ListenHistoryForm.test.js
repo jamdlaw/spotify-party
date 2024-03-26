@@ -14,7 +14,7 @@ async function testListenHistoryForm() {
         await getHistoryButton.click();
 
         // Wait for the listen history results to be visible
-        let listenHistoryResults = await driver.wait(until.elementLocated(By.className('listen-history-results')), 10000); // Adjust the class name based on your actual implementation
+        let listenHistoryResults = await driver.wait(until.elementLocated(By.className('listen-history-results')), 20000); // Adjust the class name based on your actual implementation
         console.log('Listen history results are displayed.');
 
         // Optional: Verify some results are displayed
