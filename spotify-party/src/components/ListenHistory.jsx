@@ -28,8 +28,8 @@ const getListenHistory = () => {
 
   return (
     <>
-    <h3>ListenHistory</h3>
-    <Button id='listen-history-results' onClick={getListenHistory}>Get Listen History</Button>  | 
+    <h3>Listen History</h3>
+    <Button id="listen-history-results" onClick={getListenHistory}>Get Listen History</Button>  | 
     | {listenHistory && <Button onClick={createPlaylist}>Create Playlist</Button>}
     {listenHistory && < ListenHistoryResults listenHistory={listenHistory}/>}
     </>   
