@@ -1,7 +1,7 @@
 // ListenHistoryForm.test.js
 
 const {Builder, By, until} = require('selenium-webdriver');
-require('chromedriver'); // This assumes Chrome as the browser for testing
+const chrome = require('selenium-webdriver/chrome');
 
 async function testListenHistoryForm() {
     let driver = await new Builder().forBrowser('chrome').build();
