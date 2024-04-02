@@ -28,7 +28,7 @@ const insertTrackData = async (sampleData) =>   {
         ]);
   
         // Insert tracks
-        mysql.query('INSERT INTO Tracks (track_id, album_id, track_name, album_name, album_type, total_tracks, release_date, track_number, duration_ms, explicit, popularity, preview_url, is_local, played_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', [
+        mysql.query('INSERT INTO Tracks (track_id, album_id, track_name, album_name, album_type, total_tracks, release_date, track_number, duration_ms, explicit, popularity, preview_url, is_local, played_at, artist_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?)', [
           item.track.id,
           album.id,
           item.track.name,
@@ -42,7 +42,8 @@ const insertTrackData = async (sampleData) =>   {
           item.track.popularity,
           item.track.preview_url,
           item.track.is_local,
-          item.played_at
+          item.played_at,
+          item.track.artists[0].id,
         ]);
   
       } //end of sampleData loop
