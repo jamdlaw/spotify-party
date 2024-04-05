@@ -92,9 +92,9 @@ const getRecommendations = async (accessToken, userId) => {
       },
     });
 
-    res.json();
+    const response = res.json();
 
-    return data.tracks;
+    return response.data.tracks;
     //.then(res => res.json())
     //.then(data => data.tracks)
     //.catch(error => console.log(error));
