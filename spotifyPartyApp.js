@@ -79,23 +79,33 @@ const getRecentlyPlayed = async (accessToken) => {
     }
   };
 //use spotify endpoint  
-const getRecommendations = async (accessToken, userId) => {  
-    const queryString = await getSeedTracks(userId)
-    const url = 'https://api.spotify.com/v1/recommendations?' + queryString;
-    
-    return fetch(url, {
+const getRecommendations = async (accessToken, userId) => {
+  try {
+    const queryString = await getSeedTracks(userId);
+    const url = `https://api.spotify.com/v1/recommendations?${queryString}`;
+
+    const response = await fetch(url, {
       method: 'GET',
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
         Authorization: `Bearer ${accessToken}`,
       },
-    })
-    .then(res => res.json())
-    .then(data => data.tracks)
-    .catch(error => console.log(error));
-    
-  };
+    });
+
+    if (!response.ok) {
+      throw new Error(`Error! status: ${response.status}`);
+    }
+
+    const data = await response.json();
+    return data.tracks;
+  } catch (error) {
+    console.log(error);
+    // Depending on your use case, you might want to re-throw the error, return null, or handle it differently
+    return null; // or however you want to handle the error
+  }
+};
+
 //after playlist is created add the songs  
 const addTracksToPlaylist = async (access_token, playlistId) => {
      
