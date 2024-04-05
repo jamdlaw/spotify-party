@@ -6,6 +6,7 @@ import CreateParty from './components/CreateParty'
 import ListenHistory from './components/ListenHistory'
 import { LoginProvider } from './components/LoginContext'
 import CreatePlaylist from './components/CreatePlaylist'
+import Navbar from './Navbar.jsx';
 import Footer from './components/Footer';
 
 function App() {
