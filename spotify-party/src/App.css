@@ -40,3 +40,16 @@
 .read-the-docs {
   color: #888;
 }
+
+nav, footer{
+  position: fixed;      
+}
+
+nav
+{
+  top: 0;
+}
+
+footer{
+  bottom:0;
+}
