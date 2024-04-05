@@ -15,7 +15,7 @@ function App() {
     <LoginProvider>
       <BrowserRouter>
         <Navbar/>
-        <div class="content-wrapper">
+        <div className="content-wrapper">
           <Routes>
           <Route path="/" element={<CreateOrJoinParty/>}></Route>
           <Route path="/CreateOrJoinParty" element={<CreateOrJoinParty/>}></Route>
