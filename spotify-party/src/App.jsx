@@ -14,6 +14,7 @@ function App() {
   return (
     <LoginProvider>
       <BrowserRouter>
+        <Navbar/>
         <Routes>
         <Route path="/" element={<CreateOrJoinParty/>}></Route>
         <Route path="/CreateOrJoinParty" element={<CreateOrJoinParty/>}></Route>
