@@ -182,9 +182,9 @@ const getPartyList = async () =>{
 }
 //add user id to party table
 const joinGuestToParty = async (userId, partyId, is_host = 0) => {
-    const sql = 'INSERT INTO party_guests(user_id, party_id,is_host) VALUES (?,?,?);';
+    const sql = 'INSERT INTO party_guests(user_id, party_id) VALUES (?,?);';
     try{  
-        results = await mysql.query(sql, [userId, partyId, is_host]);
+        results = await mysql.query(sql, [userId, partyId]);
     } catch(error){
         console.log(error);
     }
