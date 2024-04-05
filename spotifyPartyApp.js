@@ -83,17 +83,21 @@ const getRecommendations = async (accessToken, userId) => {
     const queryString = await getSeedTracks(userId)
     const url = 'https://api.spotify.com/v1/recommendations?' + queryString;
     
-    return fetch(url, {
+    let res = await fetch(url, {
       method: 'GET',
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
         Authorization: `Bearer ${accessToken}`,
       },
-    })
-    .then(res => res.json())
-    .then(data => data.tracks)
-    .catch(error => console.log(error));
+    });
+
+    res.json();
+
+    return data.tracks;
+    //.then(res => res.json())
+    //.then(data => data.tracks)
+    //.catch(error => console.log(error));
     
   };
 //after playlist is created add the songs  
