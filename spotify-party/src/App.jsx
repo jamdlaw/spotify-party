@@ -15,13 +15,15 @@ function App() {
     <LoginProvider>
       <BrowserRouter>
         <Navbar/>
-        <Routes>
-        <Route path="/" element={<CreateOrJoinParty/>}></Route>
-        <Route path="/CreateOrJoinParty" element={<CreateOrJoinParty/>}></Route>
-        <Route path="/CreateParty" element={<CreateParty/>}></Route>
-        <Route path="/ListenHistory" element={<ListenHistory/>}></Route>
-        <Route path="/CreatePlaylist" element={<CreatePlaylist/>}></Route>
-        </Routes>  
+        <div class="content-wrapper">
+          <Routes>
+          <Route path="/" element={<CreateOrJoinParty/>}></Route>
+          <Route path="/CreateOrJoinParty" element={<CreateOrJoinParty/>}></Route>
+          <Route path="/CreateParty" element={<CreateParty/>}></Route>
+          <Route path="/ListenHistory" element={<ListenHistory/>}></Route>
+          <Route path="/CreatePlaylist" element={<CreatePlaylist/>}></Route>
+          </Routes>
+        </div>  
         <Footer></Footer>
       </BrowserRouter>
     </LoginProvider>
