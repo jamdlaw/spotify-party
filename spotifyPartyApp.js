@@ -83,21 +83,17 @@ const getRecommendations = async (accessToken, userId) => {
     const queryString = await getSeedTracks(userId)
     const url = 'https://api.spotify.com/v1/recommendations?' + queryString;
     
-    let res = await fetch(url, {
+    return fetch(url, {
       method: 'GET',
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
         Authorization: `Bearer ${accessToken}`,
       },
-    });
-
-    const response = res.json();
-
-    return response.data.tracks;
-    //.then(res => res.json())
-    //.then(data => data.tracks)
-    //.catch(error => console.log(error));
+    })
+    .then(res => res.json())
+    .then(data => data.tracks)
+    .catch(error => console.log(error));
     
   };
 //after playlist is created add the songs  
@@ -182,9 +178,9 @@ const getPartyList = async () =>{
 }
 //add user id to party table
 const joinGuestToParty = async (userId, partyId, is_host = 0) => {
-    const sql = 'INSERT INTO party_guests(user_id, party_id) VALUES (?,?);';
+    const sql = 'INSERT INTO party_guests(user_id, party_id,is_host) VALUES (?,?,?);';
     try{  
-        results = await mysql.query(sql, [userId, partyId]);
+        results = await mysql.query(sql, [userId, partyId, is_host]);
     } catch(error){
         console.log(error);
     }
