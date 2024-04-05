@@ -101,8 +101,7 @@ const getRecommendations = async (accessToken, userId) => {
     return data.tracks;
   } catch (error) {
     console.log(error);
-    // Depending on your use case, you might want to re-throw the error, return null, or handle it differently
-    return null; // or however you want to handle the error
+    return null; 
   }
 };
 
