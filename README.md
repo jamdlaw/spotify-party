@@ -1,6 +1,6 @@
 # spotify party
 
-step 1 rename .env_sample to .env and compete the missing information
+step 1 rename .env_sample to .env and complete the missing information
 
 step 2 database create script is saved as 
     schema.sql
