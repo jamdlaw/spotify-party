@@ -56,7 +56,7 @@ footer{
 }
 
 .content-wrapper{
-  border: 3px solid green;
+  /*border: 3px solid green; */
   padding: 10px;
   position: absolute;
   top: 50%;
