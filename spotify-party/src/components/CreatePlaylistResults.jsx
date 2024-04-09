@@ -10,7 +10,7 @@ const CreatePlaylistResults = ({ tracks }) => {
       <h2>Recommendations</h2>
       <ul>
         {tracks.map((track, index) => (
-          <div>
+          <div key={track.id}> {/* Assuming `track.id` is a unique identifier */}
           <li key={index}>{track.name} by {track.artists.map(artist => artist.name).join(', ')}</li>
           <img 
               src={track.album.images[0].url} 
